@@ -218,10 +218,10 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
 
-  # An assumption here, according to readelf -a bl31.elf
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000
-  # Sounds like a pretty safe memory configuration:
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0xf0000000
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x41000000
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x3df80000
+  # gSunxiTokenSpaceGuid.PcdMpParkSharedBase|0x7EF80000
+  # gSunxiTokenSpaceGuid.PcdMpParkSharedSize|0x00080000
 
   # Manually set the stack
   # Size of the region used by UEFI in permanent memory (Reserved 128MB)
@@ -274,22 +274,14 @@
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x800fee0f
   gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x07
 
-  # Interrupt Controller (arch/arm64/boot/dts/nvidia/tegra210.dtsi)
-  gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x50041000
-  gArmTokenSpaceGuid.PcdGicDistributorBase|0x50041000
-  gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase|0x50042000
-
-  # What the hell is that
-  # So Tegra210 has several timer complex?
-  gArmTokenSpaceGuid.PcdArmArchTimerSecIntrNum|29
-  gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|30
-  gArmTokenSpaceGuid.PcdArmArchTimerHypIntrNum|26
-  gArmTokenSpaceGuid.PcdArmArchTimerVirtIntrNum|27
+  gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x01c81000
+  gArmTokenSpaceGuid.PcdGicDistributorBase|0x01c81000
+  gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase|0x01c82000
 
   # Core configs
   gArmTokenSpaceGuid.PcdArmPrimaryCore|0
   gArmTokenSpaceGuid.PcdArmPrimaryCoreMask|0xf03
-  gArmTokenSpaceGuid.PcdArmArchTimerFreqInHz|19200000
+  gArmTokenSpaceGuid.PcdArmArchTimerFreqInHz|24000000
 
   # Performance
   gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|1
@@ -303,10 +295,11 @@
 
   # Display
   # Simple FrameBuffer
-  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0xdfb80000
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x7F000000
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|720
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1440
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
+  # gSunxiTokenSpaceGuid.PcdFrameBufferSize|0x1000000
 
   # TrustZone carveout, 14MB below slot 1 top
   gPinePhonePkgTokenSpaceGuid.PcdTrustZoneCarveoutSize|0xe00000
