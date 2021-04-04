@@ -22,12 +22,13 @@
   VERSION_STRING                 = 1.0
 
 [Sources]
-  Dbg2.aslc
-  Facs.aslc
-  Fadt.aslc
-  Gtdt.aslc
-  Madt.aslc
-  Dsdt/Dsdt.asl
+  ArmFacp.aslc
+  ArmDbg2.aslc
+  ArmGtdt.aslc
+  ArmMadt.aslc
+  ArmDsdt.asl
+  ArmCsrt.aslc
+  ArmBgrt.aslc
 
 [Packages]
   ArmPkg/ArmPkg.dec
