@@ -15,9 +15,9 @@
   gArmTokenSpaceGuid.PcdSystemMemorySize
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
-  gNintendoSwitchPkgTokenSpaceGuid.PcdSmbiosSystemModel
-  gNintendoSwitchPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel
-  gNintendoSwitchPkgTokenSpaceGuid.PcdSmbiosProcessorModel
+  gPinePhonePkgTokenSpaceGuid.PcdSmbiosSystemModel
+  gPinePhonePkgTokenSpaceGuid.PcdSmbiosSystemRetailModel
+  gPinePhonePkgTokenSpaceGuid.PcdSmbiosProcessorModel
   
 [Packages]
   ArmPkg/ArmPkg.dec
@@ -25,7 +25,7 @@
   MdePkg/MdePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  NintendoSwitchPkg/NintendoSwitch.dec
+  PinePhonePkg/PinePhone.dec
 
 [LibraryClasses]
   BaseLib
@@ -38,7 +38,7 @@
   CompilerIntrinsicsLib
 
 [Guids.common]
-  gNintendoSwitchPkgTokenSpaceGuid
+  gPinePhonePkgTokenSpaceGuid
   
 [Protocols]
   gEfiSmbiosProtocolGuid

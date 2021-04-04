@@ -14,7 +14,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   ArmPkg/ArmPkg.dec
-  NintendoSwitchPkg/NintendoSwitch.dec
+  PinePhonePkg/PinePhone.dec
 
 [LibraryClasses]
   ArmLib

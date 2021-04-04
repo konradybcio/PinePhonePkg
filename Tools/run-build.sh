@@ -76,9 +76,9 @@ function SetupEnv()
 
 function FixPermission()
 {
-  chmod +x NintendoSwitchPkg/Tools/*.ps1
-  chmod +x NintendoSwitchPkg/Tools/PsModules/*.psm1
-  chmod +x NintendoSwitchPkg/Tools/*.sh
+  chmod +x PinePhonePkg/Tools/*.ps1
+  chmod +x PinePhonePkg/Tools/PsModules/*.psm1
+  chmod +x PinePhonePkg/Tools/*.sh
 }
 
 function SourceEnv()
@@ -90,7 +90,7 @@ function SourceEnv()
 
 function DevelopmentBuild()
 {
-  ./NintendoSwitchPkg/Tools/edk2-build.ps1
+  ./PinePhonePkg/Tools/edk2-build.ps1
 
   if [ ! $? -eq 0 ]; then
       echo "[Builder] Build failed."

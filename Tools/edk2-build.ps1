@@ -18,12 +18,12 @@ Write-Host "Task: EDK2 build"
 
 # Targets. Ensure corresponding DSC/FDF files exist
 $availableTargets = @(
-	"NintendoSwitch"
+	"PinePhone"
 )
 
 # Check package path.
-if ($null -eq (Test-Path -Path "NintendoSwitchPkg")) {
-	Write-Error -Message "NintendoSwitchPkg is not found."
+if ($null -eq (Test-Path -Path "PinePhonePkg")) {
+	Write-Error -Message "PinePhonePkg is not found."
 	return -2
 }
 
@@ -51,7 +51,7 @@ if (($false -eq (Test-Path -Path "BaseTools")) -or ($Clean -eq $true)) {
 if ($true -eq $Clean) {
 	foreach ($target in $availableTargets) {
 		Write-Output "Clean target $($target)."
-		build -a AARCH64 -p NintendoSwitchPkg/$($target).dsc -t GCC5 clean
+		build -a AARCH64 -p PinePhonePkg/$($target).dsc -t GCC5 clean
 
 		if (-not $?) {
 			Write-Error "Clean target $($target) failed."
@@ -86,12 +86,12 @@ if ($commit) {
 		"#endif"
 	)
 
-	Set-Content -Path NintendoSwitchPkg/Include/FwReleaseInfo.h -Value $releaseInfoContent -ErrorAction SilentlyContinue -Force
+	Set-Content -Path PinePhonePkg/Include/FwReleaseInfo.h -Value $releaseInfoContent -ErrorAction SilentlyContinue -Force
 }
 
 foreach ($target in $availableTargets) {
-	Write-Output "Build NintendoSwitchPkg for $($target) (DEBUG)."
-	build -a AARCH64 -p NintendoSwitchPkg/$($target).dsc -t GCC5
+	Write-Output "Build PinePhonePkg for $($target) (DEBUG)."
+	build -a AARCH64 -p PinePhonePkg/$($target).dsc -t GCC5
 
 	if (-not $?) {
 		Write-Error "Build target $($target) failed."

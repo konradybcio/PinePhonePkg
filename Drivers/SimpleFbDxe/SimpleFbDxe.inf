@@ -16,7 +16,7 @@
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
-  NintendoSwitchPkg/NintendoSwitch.dec
+  PinePhonePkg/PinePhone.dec
 
 [LibraryClasses]
   BaseLib
@@ -35,13 +35,13 @@
   gEfiCpuArchProtocolGuid
 
 [Pcd]
-  gNintendoSwitchPkgTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth
-  gNintendoSwitchPkgTokenSpaceGuid.PcdMipiFrameBufferVisibleHeight
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferVisibleHeight
 
 [FixedPcd]
-  gNintendoSwitchPkgTokenSpaceGuid.PcdMipiFrameBufferAddress
-  gNintendoSwitchPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
-  gNintendoSwitchPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferAddress
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferHeight
 
 [Guids]
   gEfiMdeModulePkgTokenSpaceGuid

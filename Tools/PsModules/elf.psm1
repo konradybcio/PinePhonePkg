@@ -11,8 +11,8 @@ function Copy-ElfImages {
 	Write-Host "Task: ELF Image generation"
 
 	# Check content (this search pattern is sufficient for our purpose at this moment)
-	$BuildContent = Get-ChildItem -Path "Build/NintendoSwitch*-AARCH64/**/*.fd" -Recurse
-	$LdScript = "NintendoSwitchPkg/Tools/FvWrapper.ld"
+	$BuildContent = Get-ChildItem -Path "Build/PinePhone*-AARCH64/**/*.fd" -Recurse
+	$LdScript = "PinePhonePkg/Tools/FvWrapper.ld"
 	if ($BuildContent -eq $false) {
 		Write-Error -Message "Build payload is not found."
 		return -1

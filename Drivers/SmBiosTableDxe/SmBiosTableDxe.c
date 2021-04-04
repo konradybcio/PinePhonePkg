@@ -55,7 +55,7 @@
 
 /* Build-time generated ReleaseInfo.h will override the default one */
 #include "ReleaseInfo.h"
-#include <FwReleaseInfo.h>
+//#include <FwReleaseInfo.h>
 
 /***********************************************************************
 	SMBIOS data definition  TYPE0  BIOS Information
@@ -147,12 +147,12 @@ SMBIOS_TABLE_TYPE1 mSysInfoType1 = {
   6,    // Family String
 };
 CHAR8  *mSysInfoType1Strings[] = {
-  "Nintendo of America Inc.",
-  "Nintendo Switch",
-  "HAC-001",
+  "Pine64",
+  "Pine64 PinePhone",
+  "PiPh",
   "Unknown",
-  "HAC-001",
-  "Console",
+  "PiPh",
+  "Phone",
   NULL
 };
 
@@ -181,9 +181,9 @@ SMBIOS_TABLE_TYPE2  mBoardInfoType2 = {
   { 0 }                     // ContainedObjectHandles[1];
 };
 CHAR8  *mBoardInfoType2Strings[] = {
-  "Nintendo of America Inc.",
-  "Nintendo Switch",
-  "HAC-001",
+  "Pine64",
+  "Pine64 PinePhone",
+  "PiPh",
   "Unknown",
   "",
   "",
@@ -212,7 +212,7 @@ SMBIOS_TABLE_TYPE3  mEnclosureInfoType3 = {
   { { 0 } },    // ContainedElements[1];
 };
 CHAR8  *mEnclosureInfoType3Strings[] = {
-  "Nintendo Switch",
+  "Pine64 PinePhone",
   "1",
   "Unknown",
   "",
