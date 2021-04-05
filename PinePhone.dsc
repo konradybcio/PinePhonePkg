@@ -34,7 +34,7 @@
   GCC:*_*_AARCH64_DLINK_FLAGS = -z common-page-size=0x10000
 
 [BuildOptions.common]
-  GCC:*_*_AARCH64_CC_FLAGS = -Wno-unused-variable
+  GCC:*_*_AARCH64_CC_FLAGS = -Wno-unused-variable -mfix-cortex-a53-835769 -mfix-cortex-a53-843419 -mstrict-align -mgeneral-regs-only
 
 ################################################################################
 #
@@ -295,7 +295,7 @@
 
   # Display
   # Simple FrameBuffer
-  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x7F000000
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x48000000
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|720
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1440
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
