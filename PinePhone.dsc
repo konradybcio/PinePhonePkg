@@ -151,6 +151,8 @@
   SunxiCheckLib|PinePhonePkg/Library/SunxiCheckLib/SunxiCheckLib.inf
   SunxiPartitionLib|PinePhonePkg/Library/SunxiPartitionLib/SunxiPartitionLib.inf
   SunxiCommonLib|PinePhonePkg/Library/SunxiCommonLib/CommonLib.inf
+  SunxiKeyLib|PinePhonePkg/Library/KeyLib/SunxiKeyLib.inf
+  SunxiTwiLib|PinePhonePkg/Library/SunxiTwiLib/SunxiTwiLib.inf
 
   # ..and some deps
   UncachedMemoryAllocationLib|PinePhonePkg/AncientArmPkg/Library/UncachedMemoryAllocationLib/UncachedMemoryAllocationLib.inf
@@ -463,3 +465,4 @@
 
   # *MMC
   PinePhonePkg/Drivers/SunxiSdMmcDxe/SdMmcDxe.inf
+  PinePhonePkg/Drivers/BootCommandDxe/BootCommandDxe.inf
