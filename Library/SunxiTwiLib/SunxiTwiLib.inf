@@ -31,8 +31,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   ArmPkg/ArmPkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
-  SunxiPlatformPkg/sun50iw1p1Pkg/sun50iw1p1Pkg.dec
+  PinePhonePkg/PinePhone.dec
 
 [LibraryClasses]
   PcdLib

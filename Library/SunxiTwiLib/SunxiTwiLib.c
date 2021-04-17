@@ -82,13 +82,13 @@ SunxiTwiGpioInit(
   CHAR8 DevName[5];
 
   if(BusNum == 1){
-    AsciiStrCpy(DevName,"twi1");
+    AsciiStrCpyS(DevName, sizeof(DevName), "twi1");
   }
   else if(BusNum == 2){
-    AsciiStrCpy(DevName,"twi2");
+    AsciiStrCpyS(DevName, sizeof(DevName), "twi2");
   }
   else{
-    AsciiStrCpy(DevName,"twi0");
+    AsciiStrCpyS(DevName, sizeof(DevName), "twi0");
   }
   gpio_request_simple(DevName, NULL);
   
