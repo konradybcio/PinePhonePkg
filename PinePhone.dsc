@@ -322,6 +322,20 @@
   # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialFifoControl|0x07
   # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterAccessWidth|8
 
+  # sunxi drivers
+  gSunxiTokenSpaceGuid.PcdGpioBase|0x01c20800
+  gSunxiTokenSpaceGuid.PcdRtcBase|0x01f00000
+
+  gSunxiTokenSpaceGuid.PcdScriptEarlyBase|0x43000000
+  gSunxiTokenSpaceGuid.PcdCpusGpioBase|0x01f02c00
+
+  # Timers
+  gSunxiTokenSpaceGuid.PcdSunxiArchTimer|3
+  gSunxiTokenSpaceGuid.PcdSunxiFreeTimer|4
+  gEmbeddedTokenSpaceGuid.PcdTimerPeriod|100000
+  gEmbeddedTokenSpaceGuid.PcdEmbeddedPerformanceCounterPeriodInNanoseconds|77
+  gEmbeddedTokenSpaceGuid.PcdEmbeddedPerformanceCounterFrequencyInHz|13000000
+
 [Components.common]
   # PEI/SEC
   ArmPlatformPkg/PrePi/PeiUniCore.inf
