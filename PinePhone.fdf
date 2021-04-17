@@ -129,6 +129,7 @@ READ_LOCK_STATUS   = TRUE
   # Sunxi things
   INF PinePhonePkg/Drivers/SunxiSdMmcDxe/SdMmcDxe.inf
   INF PinePhonePkg/Drivers/BootCommandDxe/BootCommandDxe.inf
+  INF PinePhonePkg/Drivers/SmBusDxe/SmBusDxe.inf
 
   # Linux (pretends to be UEFI shell)
   # FILE APPLICATION = 7C04A583-9E3E-4f1c-AD65-E05268D0B4D1 {

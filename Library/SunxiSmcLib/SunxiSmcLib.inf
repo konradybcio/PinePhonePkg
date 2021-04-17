@@ -23,11 +23,14 @@
   SunxiSmcLib.c
   Smc_helper.S   | GCC
   Smc_helper.asm | RVCT
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast
   
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
+  PinePhonePkg/PinePhone.dec
   
 [LibraryClasses]
   DebugLib

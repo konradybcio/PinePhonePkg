@@ -518,7 +518,7 @@ static INT32 SunxiRsbReadSecureOS(UINT32 slave_id, UINT32 daddr, UINT8 *data, UI
   ret = (UINT8)(arm_svc_arisc_read_pmu((UINT32)daddr));
   if(ret < 0 )
   {
-    return EFI_DEVICE_ERROR;
+    return 1;//bad gcc EFI_DEVICE_ERROR;
   }
   *data = (UINT8)(ret&0xff);
   return EFI_SUCCESS;

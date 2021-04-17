@@ -130,12 +130,7 @@
   UtilLib|PinePhonePkg/Library/UtilLib/UtilLib.inf
   ClockLib|PinePhonePkg/Library/ClockLib/ClockLib.inf
 
-  # 16550 Serial
-  # SerialPortLib|MdeModulePkg/Library/BaseSerialPortLib16550/BaseSerialPortLib16550.inf
-  # PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
-
-  # 8250 Serial
-  SerialPortLib|PinePhonePkg/Library/Tegra8250SerialPortLib/Tegra8250SerialPortLib.inf
+  SerialPortLib|PinePhonePkg/Library/SerialPortLib/SerialPortLib.inf
 
   # System Libraries
   EfiResetSystemLib|ArmPkg/Library/ArmPsciResetSystemLib/ArmPsciResetSystemLib.inf
@@ -153,6 +148,7 @@
   SunxiCommonLib|PinePhonePkg/Library/SunxiCommonLib/CommonLib.inf
   SunxiKeyLib|PinePhonePkg/Library/KeyLib/SunxiKeyLib.inf
   SunxiTwiLib|PinePhonePkg/Library/SunxiTwiLib/SunxiTwiLib.inf
+  SunxiSmcLib|PinePhonePkg/Library/SunxiSmcLib/SunxiSmcLib.inf
 
   # ..and some deps
   UncachedMemoryAllocationLib|PinePhonePkg/AncientArmPkg/Library/UncachedMemoryAllocationLib/UncachedMemoryAllocationLib.inf
@@ -325,19 +321,6 @@
   #
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable|TRUE
 
-  # 16550 Serial (UARTB, Right-side Joy-Con)
-  # It is sending garbages now, we comment it out right now
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialDetectCable|FALSE
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseMmio|TRUE
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseHardwareFlowControl|FALSE
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialBaudRate|115200
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialClockRate|1843000
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase|0x70006040
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterStride|4
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialLineControl|0x03
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialFifoControl|0x07
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterAccessWidth|8
-
   # sunxi drivers
   gPinePhonePkgTokenSpaceGuid.PcdGpioBase|0x01c20800
   gPinePhonePkgTokenSpaceGuid.PcdRtcBase|0x01f00000
@@ -463,6 +446,7 @@
       gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|8000
   }
 
-  # *MMC
+  # Sunxi thingies
   PinePhonePkg/Drivers/SunxiSdMmcDxe/SdMmcDxe.inf
   PinePhonePkg/Drivers/BootCommandDxe/BootCommandDxe.inf
+  PinePhonePkg/Drivers/SmBusDxe/SmBusDxe.inf
