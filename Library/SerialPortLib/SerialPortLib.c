@@ -21,8 +21,8 @@
 #include <Library/IoLib.h>
 #include <Interinc/sunxi_uefi.h>
 #include <Library/SysConfigLib.h>
-#include <Include/Sun50iW1P1/ccmu.h>
-#include <Include/Sun50iW1P1/uart.h>
+#include <Include/ccmu.h>
+#include <Include/uart.h>
 #include "sw_uart.h"
 
 #define   SERIAL_PORT    serial_ports[serial_index]
@@ -58,7 +58,7 @@ SerialPortInitialize (
   normal_gpio_cfg* uart_gpio_cfg;
   UINT32 uart_port;
   
-  struct spare_boot_head_t* spare_head =get_spare_head(PcdGet32 (PcdFdBaseAddress));
+  struct spare_boot_head_t* spare_head =get_spare_head(PcdGet64(PcdFdBaseAddress));
 
   uart_gpio_cfg = (normal_gpio_cfg *)spare_head->boot_data.uart_gpio;
   uart_port = spare_head->boot_data.uart_port;
@@ -165,3 +165,38 @@ SerialPortPoll (
   return sw_uart_tstc(SERIAL_PORT);
 }
 
+/* No, thanks MdeModulePkg! */
+RETURN_STATUS
+EFIAPI
+SerialPortSetControl
+(
+        IN UINT32 Control
+)
+{
+        return RETURN_UNSUPPORTED;
+}
+
+RETURN_STATUS
+EFIAPI
+SerialPortGetControl
+(
+        OUT UINT32 *Control
+)
+{
+        return RETURN_UNSUPPORTED;
+}
+
+RETURN_STATUS
+EFIAPI
+SerialPortSetAttributes
+(
+        IN OUT UINT64             *BaudRate,
+        IN OUT UINT32             *ReceiveFifoDepth,
+        IN OUT UINT32             *Timeout,
+        IN OUT EFI_PARITY_TYPE    *Parity,
+        IN OUT UINT8              *DataBits,
+        IN OUT EFI_STOP_BITS_TYPE *StopBits
+)
+{
+        return RETURN_UNSUPPORTED;
+}
