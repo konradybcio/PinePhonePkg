@@ -1,10 +1,6 @@
 #/** @file
 #  
-#  Copyright (c) 2007-2014, Allwinner Technology Co., Ltd. All rights reserved.
-#  http://www.allwinnertech.com
-#
-#  WangWei <wangwei@allwinnertech.com>
-#  
+#  Copyright (c) 2012, Samsung Electronics Co. All rights reserved.<BR>
 #  This program and the accompanying materials
 #  are licensed and made available under the terms and conditions of the BSD License
 #  which accompanies this distribution.  The full text of the license may be found at
@@ -15,41 +11,26 @@
 #  
 #**/
 
-
-
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = SmbusDxe
-  FILE_GUID                      = d5125e0f-1226-444f-a218-0085996ed5da
-  MODULE_TYPE                    = DXE_DRIVER
+  BASE_NAME                      = SunxiSmcLib
+  FILE_GUID                      = DCFB829F-AE20-4FDD-B43F-4ED7E5BD7020
+  MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
-
-  ENTRY_POINT                    = InitializeSmbus
+  LIBRARY_CLASS                  = SunxiSmcLib
 
 [Sources.common]
-  Rsb.c
-  SmBusDxe.c
-
+  SunxiSmcLib.c
+  Smc_helper.S   | GCC
+  Smc_helper.asm | RVCT
+  
 [Packages]
   MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
   SunxiPlatformPkg/SunxiPlatformPkg.dec
-  SunxiPlatformPkg/sun50iw1p1Pkg/sun50iw1p1Pkg.dec
-
+  
 [LibraryClasses]
-  PcdLib
-  UefiLib
-  UefiDriverEntryPoint
-  MemoryAllocationLib
-  IoLib
-  SysConfigLib
-  SunxiSmcLib
-  
-[Guids]
-  
-[Protocols]
-  gEfiSmbusHcProtocolGuid
+  DebugLib
+  BaseLib
+  BaseMemoryLib
 
-[Pcd]
-
-[depex]
-  TRUE
