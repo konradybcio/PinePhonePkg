@@ -99,7 +99,7 @@ static UINTN CheckUserInput(VOID)
     else if(Key.UnicodeChar == 49)
     {
       AsciiPrint("Read Fel Key('1') From SerialPort Success\n");
-      AsciiStrCpy(BootCmd, "boot-mass");
+      AsciiStrCpyS(BootCmd, sizeof(BootCmd), "boot-mass");
       Status = gRT->SetVariable (
         L"SunxiBootCmd",
         &gSunxiVariableGuid,
@@ -118,7 +118,7 @@ static UINTN CheckUserInput(VOID)
     else if(Key.UnicodeChar == 51)
     {
       AsciiPrint("Read Fel Key('3') From SerialPort Success\n");
-      AsciiStrCpy(BootCmd, "test-app");
+      AsciiStrCpyS(BootCmd, sizeof(BootCmd), "test-app");
       Status = gRT->SetVariable (
         L"SunxiBootCmd",
         &gSunxiVariableGuid,
@@ -137,7 +137,7 @@ static UINTN CheckUserInput(VOID)
     else if(Key.UnicodeChar == 52)
     {
       AsciiPrint("Read Fel Key('4') From SerialPort Success\n");
-      AsciiStrCpy(BootCmd, "uefi-shell");
+      AsciiStrCpyS(BootCmd, sizeof(BootCmd), "uefi-shell");
       Status = gRT->SetVariable (
         L"SunxiBootCmd",
         &gSunxiVariableGuid,
@@ -156,7 +156,7 @@ static UINTN CheckUserInput(VOID)
     else if(Key.UnicodeChar == 53)
     {
       AsciiPrint("Read Fel Key('5') From SerialPort Success\n");
-      AsciiStrCpy(BootCmd, "fastboot");
+      AsciiStrCpyS(BootCmd, sizeof(BootCmd), "fastboot");
       Status = gRT->SetVariable (
         L"SunxiBootCmd",
         &gSunxiVariableGuid,
@@ -269,7 +269,7 @@ static EFI_STATUS BootCommandHandler(void)
   CHAR8 BootCmd[64] = {0};
   EFI_STATUS Status;
 
-  AsciiStrCpy(BootCmd,"boot-normal");
+  AsciiStrCpyS(BootCmd, sizeof(BootCmd), "boot-normal");
   BootMode = GetPmuBootMode();
   if(BootMode == PMU_PRE_FASTBOOT_MODE || BootMode == PMU_PRE_RECOVERY_MODE)
   {
@@ -292,11 +292,11 @@ static EFI_STATUS BootCommandHandler(void)
   {
     case PMU_PRE_FASTBOOT_MODE:
       AsciiPrint("PMU : ready to enter fastboot mode\n");
-      AsciiStrCpy(BootCmd, "fastboot");
+      AsciiStrCpyS(BootCmd, sizeof(BootCmd), "fastboot");
       break;
     case PMU_PRE_RECOVERY_MODE:
       AsciiPrint("PMU : find boot-recovery cmd,will boot recovery\n");
-      AsciiStrCpy(BootCmd, "boot-recovery");
+      AsciiStrCpyS(BootCmd, sizeof(BootCmd), "boot-recovery");
       break;
     case USER_SELECT_MODE:
       break;
@@ -309,16 +309,16 @@ static EFI_STATUS BootCommandHandler(void)
     case ANDROID_RECOVERY_MODE:
     case MISC_BOOT_RECOVERY_MODE:
       AsciiPrint("find boot-recovery cmd, will boot recovery\n");
-      AsciiStrCpy(BootCmd, "boot-recovery");
+      AsciiStrCpyS(BootCmd, sizeof(BootCmd), "boot-recovery");
       break;
     case ANDROID_FASTBOOT_MODE:
     case MISC_FASTBOOT_MODE:
       AsciiPrint("Fastboot detected, will boot fastboot\n");
-      AsciiStrCpy(BootCmd, "fastboot");
+      AsciiStrCpyS(BootCmd, sizeof(BootCmd), "fastboot");
       break;
     case MISC_USB_RECOVERY_MODE:
       AsciiPrint("find usb-recovery cmd, will boot recovery\n");
-      AsciiStrCpy(BootCmd, "boot-recovery");
+      AsciiStrCpyS(BootCmd, sizeof(BootCmd), "boot-recovery");
       break;
   }
   if(AsciiStrLen(BootCmd))

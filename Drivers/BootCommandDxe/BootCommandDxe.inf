@@ -33,7 +33,7 @@
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
+  PinePhonePkg/PinePhone.dec
  
 
 
