@@ -61,6 +61,7 @@
   ArmHvcLib|ArmPkg/Library/ArmHvcLib/ArmHvcLib.inf
   ArmGicLib|ArmPkg/Drivers/ArmGic/ArmGicLib.inf
   ArmGicArchLib|ArmPkg/Library/ArmGicArchLib/ArmGicArchLib.inf
+  DmaLib|PinePhonePkg/AncientArmPkg/Library/ArmDmaLib/ArmDmaLib.inf
   
   # Compiler Services
   NULL|ArmPkg/Library/CompilerIntrinsicsLib/CompilerIntrinsicsLib.inf
@@ -143,6 +144,17 @@
   DmaBounceBufferLib|PinePhonePkg/Library/DmaBounceBufferLib/DmaBounceBufferLib.inf
    NonDiscoverableDeviceRegistrationLib|MdeModulePkg/Library/NonDiscoverableDeviceRegistrationLib/NonDiscoverableDeviceRegistrationLib.inf
 
+  # Libraries that come from Allwinner
+  SunxiDmaLib|PinePhonePkg/Drivers/SunxiDmaDxe/SunxiDmaDxe.inf
+  SysConfigLib|PinePhonePkg/Library/SysConfigLib/SysConfigLib.inf
+  SunxiBootInfoLib|PinePhonePkg/Library/SunxiBootInfoLib/SunxiBootInfoLib.inf
+  SunxiCheckLib|PinePhonePkg/Library/SunxiCheckLib/SunxiCheckLib.inf
+  SunxiPartitionLib|PinePhonePkg/Library/SunxiPartitionLib/SunxiPartitionLib.inf
+  SunxiCommonLib|PinePhonePkg/Library/SunxiCommonLib/CommonLib.inf
+
+  # ..and some deps
+  UncachedMemoryAllocationLib|PinePhonePkg/AncientArmPkg/Library/UncachedMemoryAllocationLib/UncachedMemoryAllocationLib.inf
+
 [LibraryClasses.common.SEC]
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
@@ -169,6 +181,8 @@
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
   PerformanceLib|MdeModulePkg/Library/DxePerformanceLib/DxePerformanceLib.inf
   SecurityManagementLib|MdeModulePkg/Library/DxeSecurityManagementLib/DxeSecurityManagementLib.inf
+
+  DxeServicesLib|MdePkg/Library/DxeServicesLib/DxeServicesLib.inf
 
 [LibraryClasses.common.UEFI_APPLICATION]
   MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
@@ -220,8 +234,8 @@
 
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x41000000
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x3df80000
-  # gSunxiTokenSpaceGuid.PcdMpParkSharedBase|0x7EF80000
-  # gSunxiTokenSpaceGuid.PcdMpParkSharedSize|0x00080000
+  # gPinePhonePkgTokenSpaceGuid.PcdMpParkSharedBase|0x7EF80000
+  # gPinePhonePkgTokenSpaceGuid.PcdMpParkSharedSize|0x00080000
 
   # Manually set the stack
   # Size of the region used by UEFI in permanent memory (Reserved 128MB)
@@ -299,7 +313,7 @@
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|720
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1440
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
-  # gSunxiTokenSpaceGuid.PcdFrameBufferSize|0x1000000
+  # gPinePhonePkgTokenSpaceGuid.PcdFrameBufferSize|0x1000000
 
   # TrustZone carveout, 14MB below slot 1 top
   gPinePhonePkgTokenSpaceGuid.PcdTrustZoneCarveoutSize|0xe00000
@@ -323,15 +337,15 @@
   # gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterAccessWidth|8
 
   # sunxi drivers
-  gSunxiTokenSpaceGuid.PcdGpioBase|0x01c20800
-  gSunxiTokenSpaceGuid.PcdRtcBase|0x01f00000
+  gPinePhonePkgTokenSpaceGuid.PcdGpioBase|0x01c20800
+  gPinePhonePkgTokenSpaceGuid.PcdRtcBase|0x01f00000
 
-  gSunxiTokenSpaceGuid.PcdScriptEarlyBase|0x43000000
-  gSunxiTokenSpaceGuid.PcdCpusGpioBase|0x01f02c00
+  gPinePhonePkgTokenSpaceGuid.PcdScriptEarlyBase|0x43000000
+  gPinePhonePkgTokenSpaceGuid.PcdCpusGpioBase|0x01f02c00
 
   # Timers
-  gSunxiTokenSpaceGuid.PcdSunxiArchTimer|3
-  gSunxiTokenSpaceGuid.PcdSunxiFreeTimer|4
+  gPinePhonePkgTokenSpaceGuid.PcdSunxiArchTimer|3
+  gPinePhonePkgTokenSpaceGuid.PcdSunxiFreeTimer|4
   gEmbeddedTokenSpaceGuid.PcdTimerPeriod|100000
   gEmbeddedTokenSpaceGuid.PcdEmbeddedPerformanceCounterPeriodInNanoseconds|77
   gEmbeddedTokenSpaceGuid.PcdEmbeddedPerformanceCounterFrequencyInHz|13000000
@@ -446,3 +460,6 @@
       gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
       gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|8000
   }
+
+  # *MMC
+  PinePhonePkg/Drivers/SunxiSdMmcDxe/SdMmcDxe.inf
