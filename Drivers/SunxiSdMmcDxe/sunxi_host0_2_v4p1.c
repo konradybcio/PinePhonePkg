@@ -895,8 +895,8 @@ static int mmc_trans_data_by_dma(struct mmc *mmc, struct mmc_data *data)
   }
   //flush_cache((unsigned long)pdes, sizeof(struct mmc_des_v4p1) * (des_idx+1));
   OSAL_CacheRangeFlush(pdes, (UINT32)(sizeof(struct mmc_des_v4p1) * (des_idx+1)), CACHE_CLEAN_FLUSH_D_CACHE_REGION);
-  __asm("DSB");
-  __asm("ISB");
+  __asm("DSB sy");
+  __asm("ISB sy");
 
   /*
    * GCTRLREG
