@@ -132,10 +132,10 @@ ASM_PFX(ArmGetTTBR0BaseAddress):
 //  );
 ASM_PFX(ArmUpdateTranslationTableEntry):
   mcr     p15,0,R0,c7,c14,1     @ DCCIMVAC Clean data cache by MVA
-  dsb
+  dsb	sy
   mcr     p15,0,R1,c8,c7,1      @ TLBIMVA TLB Invalidate MVA  
   mcr     p15,0,R9,c7,c5,6      @ BPIALL Invalidate Branch predictor array. R9 == NoOp
-  dsb
+  dsb	sy
   isb
   bx      lr
 
@@ -143,7 +143,7 @@ ASM_PFX(ArmInvalidateTlb):
   mov     r0,#0
   mcr     p15,0,r0,c8,c7,0
   mcr     p15,0,R9,c7,c5,6      @ BPIALL Invalidate Branch predictor array. R9 == NoOp
-  dsb
+  dsb	sy
   isb
   bx      lr
 
@@ -189,7 +189,7 @@ ASM_PFX(ArmReadCpuActlr):
 
 ASM_PFX(ArmWriteCpuActlr):
   mcr     p15, 0, r0, c1, c0, 1
-  dsb
+  dsb	sy
   isb
   bx      lr
 

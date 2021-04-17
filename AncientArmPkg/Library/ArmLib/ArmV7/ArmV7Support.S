@@ -64,47 +64,47 @@ GCC_ASM_EXPORT (ArmReadIdPfr1)
 
 ASM_PFX(ArmInvalidateDataCacheEntryByMVA):
   mcr     p15, 0, r0, c7, c6, 1   @invalidate single data cache line       
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 ASM_PFX(ArmCleanDataCacheEntryByMVA):
   mcr     p15, 0, r0, c7, c10, 1  @clean single data cache line     
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 
 ASM_PFX(ArmCleanInvalidateDataCacheEntryByMVA):
   mcr     p15, 0, r0, c7, c14, 1  @clean and invalidate single data cache line
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 
 ASM_PFX(ArmInvalidateDataCacheEntryBySetWay):
   mcr     p15, 0, r0, c7, c6, 2        @ Invalidate this line    
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 
 ASM_PFX(ArmCleanInvalidateDataCacheEntryBySetWay):
   mcr     p15, 0, r0, c7, c14, 2       @ Clean and Invalidate this line    
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 
 ASM_PFX(ArmCleanDataCacheEntryBySetWay):
   mcr     p15, 0, r0, c7, c10, 2       @ Clean this line    
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 ASM_PFX(ArmInvalidateInstructionCache):
   mcr     p15,0,R0,c7,c5,0      @Invalidate entire instruction cache
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -112,7 +112,7 @@ ASM_PFX(ArmEnableMmu):
   mrc     p15,0,R0,c1,c0,0
   orr     R0,R0,#1
   mcr     p15,0,R0,c1,c0,0
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -124,7 +124,7 @@ ASM_PFX(ArmDisableMmu):
 
   mcr     p15,0,R0,c8,c7,0      @Invalidate TLB
   mcr     p15,0,R0,c7,c5,6      @Invalidate Branch predictor array
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -134,7 +134,7 @@ ASM_PFX(ArmDisableCachesAndMmu):
   bic   r0, r0, #CTRL_C_BIT             @ Disable D Cache
   bic   r0, r0, #CTRL_I_BIT             @ Disable I Cache
   mcr   p15, 0, r0, c1, c0, 0           @ Write control register
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -148,7 +148,7 @@ ASM_PFX(ArmEnableDataCache):
   mrc     p15,0,R0,c1,c0,0      @Read control register configuration data
   orr     R0,R0,R1              @Set C bit
   mcr     p15,0,r0,c1,c0,0      @Write control register configuration data
-  dsb
+  dsb	sy
   isb
   bx      LR
     
@@ -157,7 +157,7 @@ ASM_PFX(ArmDisableDataCache):
   mrc     p15,0,R0,c1,c0,0      @Read control register configuration data
   bic     R0,R0,R1              @Clear C bit
   mcr     p15,0,r0,c1,c0,0      @Write control register configuration data
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -166,7 +166,7 @@ ASM_PFX(ArmEnableInstructionCache):
   mrc     p15,0,R0,c1,c0,0      @Read control register configuration data
   orr     R0,R0,R1              @Set I bit
   mcr     p15,0,r0,c1,c0,0      @Write control register configuration data
-  dsb
+  dsb	sy
   isb
   bx      LR
   
@@ -175,7 +175,7 @@ ASM_PFX(ArmDisableInstructionCache):
   mrc     p15,0,R0,c1,c0,0      @Read control register configuration data
   bic     R0,R0,R1              @Clear I bit.
   mcr     p15,0,r0,c1,c0,0      @Write control register configuration data
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -190,7 +190,7 @@ ASM_PFX(ArmEnableBranchPrediction):
   mrc     p15, 0, r0, c1, c0, 0
   orr     r0, r0, #0x00000800
   mcr     p15, 0, r0, c1, c0, 0
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -198,7 +198,7 @@ ASM_PFX(ArmDisableBranchPrediction):
   mrc     p15, 0, r0, c1, c0, 0
   bic     r0, r0, #0x00000800
   mcr     p15, 0, r0, c1, c0, 0
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -265,7 +265,7 @@ L_Skip:
   bgt   Loop1
   
 L_Finished:
-  dsb
+  dsb	sy
   ldmfd SP!, {r4-r12, lr}
   bx    LR
 
@@ -314,7 +314,7 @@ Skip2:
   bgt   Loop4
   
 Finished2:
-  dsb
+  dsb	sy
   ldmfd SP!, {r4-r12, lr}
   bx    LR
 
@@ -324,7 +324,7 @@ ASM_PFX(ArmDataMemoryBarrier):
   
 ASM_PFX(ArmDataSyncronizationBarrier):
 ASM_PFX(ArmDrainWriteBuffer):
-  dsb
+  dsb	sy
   bx      LR
   
 ASM_PFX(ArmInstructionSynchronizationBarrier):
@@ -370,7 +370,7 @@ ASM_PFX(ArmReadCbar):
 
 ASM_PFX(ArmInvalidateInstructionAndDataTlb):
   mcr     p15, 0, r0, c8, c7, 0      @ Invalidate Inst TLB and Data TLB
-  dsb
+  dsb	sy
   bx lr
 
 ASM_PFX(ArmReadMpidr):

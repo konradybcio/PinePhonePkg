@@ -26,7 +26,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  ArmPkg/ArmPkg.dec
+  PinePhonePkg/AncientArmPkg/ArmPkg.dec
   
 
 [LibraryClasses]
@@ -47,4 +47,4 @@
 [Pcd]
 
 [Depex]
-  gEfiCpuArchProtocolGuid
+  gEfiCpuArchProtocolGuid

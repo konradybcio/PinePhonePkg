@@ -107,7 +107,7 @@ L30
   vstm  r9!, {d0-d15}
   bne  L30
 L7
-  dsb
+  dsb sy
   mov  r0, r4
   ldmfd  sp!, {r4, r9, pc}
 

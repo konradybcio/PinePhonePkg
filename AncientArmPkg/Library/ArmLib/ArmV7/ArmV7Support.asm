@@ -64,41 +64,41 @@ CTRL_I_BIT      EQU     (1 << 12)
 
 ArmInvalidateDataCacheEntryByMVA
   mcr     p15, 0, r0, c7, c6, 1   ; invalidate single data cache line       
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 ArmCleanDataCacheEntryByMVA
   mcr     p15, 0, r0, c7, c10, 1  ; clean single data cache line     
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 
 ArmCleanInvalidateDataCacheEntryByMVA
   mcr     p15, 0, r0, c7, c14, 1  ; clean and invalidate single data cache line
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 
 ArmInvalidateDataCacheEntryBySetWay
   mcr     p15, 0, r0, c7, c6, 2        ; Invalidate this line    
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 
 ArmCleanInvalidateDataCacheEntryBySetWay
   mcr     p15, 0, r0, c7, c14, 2       ; Clean and Invalidate this line    
-  dsb
+  dsb	sy
   isb
   bx      lr
 
 
 ArmCleanDataCacheEntryBySetWay
   mcr     p15, 0, r0, c7, c10, 2       ; Clean this line    
-  dsb
+  dsb	sy
   isb
   bx      lr
 
@@ -112,7 +112,7 @@ ArmEnableMmu
   mrc     p15,0,R0,c1,c0,0      ; Read SCTLR into R0 (Read control register configuration data)
   orr     R0,R0,#1              ; Set SCTLR.M bit : Enable MMU
   mcr     p15,0,R0,c1,c0,0      ; Write R0 into SCTLR (Write control register configuration data)
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -123,7 +123,7 @@ ArmDisableMmu
 
   mcr     p15,0,R0,c8,c7,0      ; TLBIALL : Invalidate unified TLB
   mcr     p15,0,R0,c7,c5,6      ; BPIALL  : Invalidate entire branch predictor array
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -133,7 +133,7 @@ ArmDisableCachesAndMmu
   bic   r0, r0, #CTRL_C_BIT             ; Disable D Cache
   bic   r0, r0, #CTRL_I_BIT             ; Disable I Cache
   mcr   p15, 0, r0, c1, c0, 0           ; Write control register
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -147,7 +147,7 @@ ArmEnableDataCache
   mrc     p15,0,R0,c1,c0,0      ; Read SCTLR into R0 (Read control register configuration data)
   orr     R0,R0,R1              ; Set SCTLR.C bit : Data and unified caches enabled
   mcr     p15,0,R0,c1,c0,0      ; Write R0 into SCTLR (Write control register configuration data)
-  dsb
+  dsb	sy
   isb
   bx      LR
     
@@ -156,7 +156,7 @@ ArmDisableDataCache
   mrc     p15,0,R0,c1,c0,0      ; Read SCTLR into R0 (Read control register configuration data)
   bic     R0,R0,R1              ; Clear SCTLR.C bit : Data and unified caches disabled
   mcr     p15,0,R0,c1,c0,0      ; Write R0 into SCTLR (Write control register configuration data)
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -165,7 +165,7 @@ ArmEnableInstructionCache
   mrc     p15,0,R0,c1,c0,0      ; Read SCTLR into R0 (Read control register configuration data)
   orr     R0,R0,R1              ; Set SCTLR.I bit : Instruction caches enabled
   mcr     p15,0,R0,c1,c0,0      ; Write R0 into SCTLR (Write control register configuration data)
-  dsb
+  dsb	sy
   isb
   bx      LR
   
@@ -188,7 +188,7 @@ ArmEnableBranchPrediction
   mrc     p15, 0, r0, c1, c0, 0 ; Read SCTLR into R0 (Read control register configuration data)
   orr     r0, r0, #0x00000800   ;
   mcr     p15, 0, r0, c1, c0, 0 ; Write R0 into SCTLR (Write control register configuration data)
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -196,7 +196,7 @@ ArmDisableBranchPrediction
   mrc     p15, 0, r0, c1, c0, 0 ; Read SCTLR into R0 (Read control register configuration data)
   bic     r0, r0, #0x00000800   ;
   mcr     p15, 0, r0, c1, c0, 0 ; Write R0 into SCTLR (Write control register configuration data)
-  dsb
+  dsb	sy
   isb
   bx      LR
 
@@ -259,7 +259,7 @@ Skip
   bgt   Loop1
   
 Finished
-  dsb
+  dsb	sy
   ldmfd SP!, {r4-r12, lr}
   bx    LR
 
@@ -308,7 +308,7 @@ Skip2
   bgt   Loop4
   
 Finished2
-  dsb
+  dsb	sy
   ldmfd SP!, {r4-r12, lr}
   bx    LR
 
@@ -318,7 +318,7 @@ ArmDataMemoryBarrier
   
 ArmDataSyncronizationBarrier
 ArmDrainWriteBuffer
-  dsb
+  dsb	sy
   bx      LR
   
 ArmInstructionSynchronizationBarrier
@@ -364,7 +364,7 @@ ArmReadCbar
 
 ArmInvalidateInstructionAndDataTlb
   mcr     p15, 0, r0, c8, c7, 0      ; Invalidate Inst TLB and Data TLB
-  dsb
+  dsb	sy
   bx lr
 
 ArmReadMpidr

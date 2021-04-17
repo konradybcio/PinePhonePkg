@@ -20,7 +20,8 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Library/DebugLib.h>
 #include <Library/UefiBootServicesTableLib.h>
-#include <Library/UncachedMemoryAllocationLib.h>
+//#include <Library/UncachedMemoryAllocationLib.h>
+#include "../../Include/Library/UncachedMemoryAllocationLib.h"
 #include <Library/PcdLib.h>
 #include <Library/ArmLib.h>
 #include <Library/DxeServicesTableLib.h>
