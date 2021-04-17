@@ -167,10 +167,10 @@ struct rsb_slave_set{
 #define RSB_RTSADDR_AXP81X  (0x11)
 #define RSB_RTSADDR_AC100   (0x4e)
 
-extern UINT32 SunxiRsbInit(VOID);
-extern UINT32 SunxiRsbConfig(UINT32 saddr, UINT32 rtsaddr);
-extern UINT32 SunxiRsbRead(UINT32 rtsaddr,UINT32 daddr, UINT8 *data, UINT32 len);
-extern UINT32 SunxiRsbWrite(UINT32 rtsaddr,UINT32 daddr, UINT8 *data, UINT32 len);
+extern EFI_STATUS SunxiRsbInit(VOID);
+extern EFI_STATUS SunxiRsbConfig(UINT32 saddr, UINT32 rtsaddr);
+extern EFI_STATUS SunxiRsbRead(UINT32 rtsaddr,UINT32 daddr, UINT8 *data, UINT32 len);
+extern EFI_STATUS SunxiRsbWrite(UINT32 rtsaddr,UINT32 daddr, UINT8 *data, UINT32 len);
 
 
 
