@@ -212,7 +212,7 @@ static int mmc_get_sdly_auto_sample(int sdc_no)
   int work_mode = 0;
   struct spare_boot_head_t* uboot_spare_head = NULL;
 
-  uboot_spare_head = (struct spare_boot_head_t*) get_spare_head(PcdGet32 (PcdFdBaseAddress));
+  uboot_spare_head = (struct spare_boot_head_t*) get_spare_head(PcdGet64 (PcdFdBaseAddress));
   work_mode = uboot_spare_head->boot_data.work_mode;
 
   if (sdc_no != 2) {
@@ -695,7 +695,7 @@ static void mmc_get_para_from_fex(int sdc_no)
       struct tune_sdly *sdly = NULL;
       u32 *p = (u32 *)&mmchost->cfg.platform_caps.sdly.tm4_smx_fx[0];
 
-      uboot_spare_head = (struct spare_boot_head_t*) get_spare_head(PcdGet32 (PcdFdBaseAddress));
+      uboot_spare_head = (struct spare_boot_head_t*) get_spare_head(PcdGet64 (PcdFdBaseAddress));
       work_mode = uboot_spare_head->boot_data.work_mode;
       priv_info =(struct boot_sdmmc_private_info_t *)(uboot_spare_head->boot_data.sdcard_spare_data);
       sdly = &(priv_info->tune_sdly);

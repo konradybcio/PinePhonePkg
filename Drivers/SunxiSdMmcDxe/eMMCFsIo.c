@@ -60,20 +60,26 @@ EFI_BLOCK_IO_MEDIA gFsSdMmc2 = {
   0                                         // LastBlock
 };
 
-
+#define MMC2_GUID { 0xb94253b2, 0xb71e, 0x4e8f, { 0x93, 0xc7, 0xca, 0xc2, 0x12, 0x2, 0x1c, 0x53 } }
 SDHC_DEVICE_PATH FsSdMmcDevicePath = {
   {
-    HARDWARE_DEVICE_PATH,
-    HW_VENDOR_DP,
-    (UINT8)(sizeof(VENDOR_DEVICE_PATH)),
-    (UINT8)((sizeof(VENDOR_DEVICE_PATH)) >> 8),
-    0
+    {
+      HARDWARE_DEVICE_PATH,
+      HW_VENDOR_DP,
+      {
+        (UINT8)(sizeof(VENDOR_DEVICE_PATH)),
+        (UINT8)((sizeof(VENDOR_DEVICE_PATH)) >> 8),
+      }
+    },
+    MMC2_GUID
   },
   {
     END_DEVICE_PATH_TYPE,
     END_ENTIRE_DEVICE_PATH_SUBTYPE,
-    sizeof (EFI_DEVICE_PATH_PROTOCOL),
-    0
+    {
+      sizeof (EFI_DEVICE_PATH_PROTOCOL),
+      0
+    }
   }
 };
 

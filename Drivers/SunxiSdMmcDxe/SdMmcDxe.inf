@@ -21,7 +21,6 @@
   FILE_GUID                      = 688AA2F3-4826-4AE8-A389-E4DFB4735BB3
   MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
-
   ENTRY_POINT                    = SunxiSdMmcDxeInitialize
 
 [Sources.common]
@@ -45,7 +44,7 @@
   MdePkg/MdePkg.dec
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
+  PinePhonePkg/PinePhone.dec
 
 [LibraryClasses]
   BaseLib
@@ -67,6 +66,9 @@
   SunxiPartitionLib
   SunxiCommonLib
 
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast
+
 [Guids]
 	gSdMmc0DevicePathGuid
 	gSdMmc2DevicePathGuid
@@ -82,4 +84,4 @@
  gArmTokenSpaceGuid.PcdFdBaseAddress
   
 [Depex]
-  TRUE
+  gEfiCpuArchProtocolGuid

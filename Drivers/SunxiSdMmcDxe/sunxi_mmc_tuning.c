@@ -1132,7 +1132,7 @@ int sunxi_switch_to_best_bus(struct mmc *mmc)
   u32 tm = host->timing_mode;
   u8 *p = NULL, *pds=NULL;
   struct spare_boot_head_t* uboot_spare_head = NULL;
-  uboot_spare_head = (struct spare_boot_head_t*) get_spare_head(PcdGet32 (PcdFdBaseAddress));
+  uboot_spare_head = (struct spare_boot_head_t*) get_spare_head(PcdGet64 (PcdFdBaseAddress));
   work_mode = uboot_spare_head->boot_data.work_mode;
 
   if (IS_SD(mmc) || (host->mmc_no == 0))

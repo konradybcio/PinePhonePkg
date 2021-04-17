@@ -2146,7 +2146,7 @@ int mmc_start_init(struct mmc *mmc)
   int work_mode; 
   struct spare_boot_head_t* uboot_spare_head = NULL;
   struct boot_sdmmc_private_info_t *priv_info = NULL;
-  uboot_spare_head = (struct spare_boot_head_t*) get_spare_head(PcdGet32 (PcdFdBaseAddress));
+  uboot_spare_head = (struct spare_boot_head_t*) get_spare_head(PcdGet64 (PcdFdBaseAddress));
 
   work_mode = uboot_spare_head->boot_data.work_mode;
   priv_info =(struct boot_sdmmc_private_info_t *)(uboot_spare_head->boot_data.sdcard_spare_data);
