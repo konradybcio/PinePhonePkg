@@ -169,7 +169,7 @@ EFI_STATUS EFIAPI I2cKeyCheck(VOID)
 
   if(KeyValue & 0x1){
     AsciiPrint("Access Vol+ Key Success\n");
-    AsciiStrCpy(BootCmd, "boot-mass");
+    AsciiStrCpyS(BootCmd, sizeof(BootCmd), "boot-mass");
     Status = gRT->SetVariable (
         L"SunxiBootCmd",
         &gSunxiVariableGuid,

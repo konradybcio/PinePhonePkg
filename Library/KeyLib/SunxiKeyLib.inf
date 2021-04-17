@@ -32,7 +32,7 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
+  PinePhonePkg/PinePhone.dec
 
 [LibraryClasses]
   DebugLib
