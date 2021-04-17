@@ -23,10 +23,13 @@
 [Sources.common]
   SysConfigLib.c
 
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast
+
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
+  PinePhonePkg/PinePhone.dec
   
 [LibraryClasses]
   MemoryAllocationLib
@@ -42,5 +45,5 @@
 [Protocols]
  
 [FixedPcd]
-  gSunxiTokenSpaceGuid.PcdGpioBase
-  gSunxiTokenSpaceGuid.PcdCpusGpioBase
+  gPinePhonePkgTokenSpaceGuid.PcdGpioBase
+  gPinePhonePkgTokenSpaceGuid.PcdCpusGpioBase

@@ -20,7 +20,7 @@
   FILE_GUID                      = 720b4ac2-46ad-44d8-bf1f-46333214a7e2
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
-  LIBRARY_CLASS                  = ArmPlatformLib|SEC PEIM
+  LIBRARY_CLASS                  = ArmPlatformLib
 
 [Packages]
   MdePkg/MdePkg.dec

@@ -26,7 +26,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
+  PinePhonePkg/PinePhone.dec
   
 [LibraryClasses]
   DebugLib
@@ -41,4 +41,3 @@
 [Protocols]
  
 [FixedPcd]
-

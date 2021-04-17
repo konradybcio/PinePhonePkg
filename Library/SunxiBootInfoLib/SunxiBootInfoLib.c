@@ -37,7 +37,7 @@ UINT32 SunxiLibGetBootMode()
   Hob =  GetFirstGuidHob (&gSunxiBootInfoHobGuid);
   if (Hob == NULL) {
     DEBUG((DEBUG_WARN, "--%s:No BootInfo Guid found, this protocol will not install. \n",__FUNCTION__));
-    return EFI_NOT_FOUND;
+    return 0;//EFI_NOT_FOUND;
   }
 
   return Hob->WorkMode;
@@ -48,7 +48,7 @@ UINT32 SunxiLibGetBootInfo(SUNXI_BOOTINFO_HOB **Hob)
   *Hob =  GetFirstGuidHob (&gSunxiBootInfoHobGuid);
   if (Hob == NULL) {
     DEBUG((DEBUG_WARN, "--%s:No BootInfo Guid found, this protocol will not install. \n",__FUNCTION__));
-    return EFI_NOT_FOUND;
+    return 0;//EFI_NOT_FOUND;
   }
 
   return EFI_SUCCESS;

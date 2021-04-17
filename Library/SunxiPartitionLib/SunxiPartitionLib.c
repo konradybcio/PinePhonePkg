@@ -129,7 +129,8 @@ int sunxi_partition_get_name(int index, char *buf)
 
   if(mbr_status)
   {
-    AsciiStrnCpy(buf, (const char *)mbr->array[index].name, 16);
+    //AsciiStrnCpy(buf, (const char *)mbr->array[index].name, 16);
+    AsciiStrnCpyS(buf, sizeof(buf), (const char *)mbr->array[index].name, 16);
   }
   else
   {
@@ -148,7 +149,8 @@ EFI_STATUS SunxipartitionGetName(IN UINT32 Index, OUT CHAR8 *Buffer)
     return EFI_DEVICE_ERROR;
   }
 
-  AsciiStrnCpy(Buffer, (const char *)mbr->array[Index].name, 16);
+  //AsciiStrnCpy(Buffer, (const char *)mbr->array[Index].name, 16);
+  AsciiStrnCpyS(Buffer, sizeof(Buffer), (const char *)mbr->array[Index].name, 16);
 
   return EFI_SUCCESS;
 }
@@ -424,11 +426,13 @@ void SunxiGetPartitionInfo(int storage_type, char *cmdline_part_info)
     {
       if(index == 0)
       {
-        AsciiStrCpy(part_name, "mmcblk0p2");
+        //AsciiStrCpy(part_name, "mmcblk0p2");
+	AsciiStrCpyS(part_name, sizeof(part_name), "mmcblk0p2");
       }
       else if( (index+1)==part_total)
       {
-        AsciiStrCpy(part_name, "mmcblk0p1");
+        //AsciiStrCpy(part_name, "mmcblk0p1");
+	AsciiStrCpyS(part_name, sizeof(part_name), "mmcblk0p1");
       }
       else
       {
@@ -442,7 +446,8 @@ void SunxiGetPartitionInfo(int storage_type, char *cmdline_part_info)
 
   partition_sets[offset-1] = '\0';
 
-  AsciiStrCpy(cmdline_part_info, partition_sets);
+ //AsciiStrCpy(cmdline_part_info, partition_sets);
+  AsciiStrCpyS(cmdline_part_info, sizeof(cmdline_part_info), partition_sets);
 }
 
 EFI_STATUS
@@ -694,7 +699,8 @@ EFI_STATUS SunxiGptPartitionGetName(IN UINT32 Index, OUT CHAR8 *Buffer)
 
   EntryIndex = (EFI_PARTITION_ENTRY *)(gpt_buf + Index * gptPartSize);
   
-  AsciiStrnCpy(Buffer, (const char *)EntryIndex->PartitionName, 36);
+  //AsciiStrnCpy(Buffer, (const char *)EntryIndex->PartitionName, 36);
+  AsciiStrnCpyS(Buffer, sizeof(Buffer), (const char *)EntryIndex->PartitionName, 36);
 
   return EFI_SUCCESS;
 }
@@ -845,11 +851,13 @@ void SunxiGptGetPartitionInfo(IN UINT32 storage_type, IN CHAR8 *cmdline_part_inf
     {
       if(index == 0)
       {
-        AsciiStrCpy(part_name, "mmcblk0p2");
+        //AsciiStrCpy(part_name, "mmcblk0p2");
+	AsciiStrCpyS(part_name, sizeof(part_name), "mmcblk0p2");
       }
       else if( (index+1)==part_total)
       {
-        AsciiStrCpy(part_name, "mmcblk0p1");
+        //AsciiStrCpy(part_name, "mmcblk0p1");
+	AsciiStrCpyS(part_name, sizeof(part_name), "mmcblk0p1");
       }
       else
       {
@@ -863,6 +871,7 @@ void SunxiGptGetPartitionInfo(IN UINT32 storage_type, IN CHAR8 *cmdline_part_inf
 
   partition_sets[offset-1] = '\0';
 
-  AsciiStrCpy(cmdline_part_info, partition_sets);
+  // AsciiStrCpy(cmdline_part_info, partition_sets);
+  AsciiStrCpyS(cmdline_part_info, sizeof(cmdline_part_info), partition_sets);
 }
 

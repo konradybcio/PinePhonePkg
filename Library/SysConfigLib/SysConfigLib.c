@@ -202,15 +202,21 @@ INT32 script_parser_fetch_subkey_next(UINT32 hd, CHAR8 *sub_name, INT32 value[],
     if(pattern == SCIRPT_PARSER_VALUE_TYPE_SINGLE_WORD)
     {
       value[0] = *(INT32 *)(script_mod_buf + (sub_key->offset<<2));
-      AsciiStrCpy(sub_name, sub_key->sub_name);
+      //AsciiStrCpy(sub_name, sub_key->sub_name);
+      AsciiStrCpyS(sub_name, sizeof(sub_name), sub_key->sub_name);
       *index = j + 1;
 
       return SCRIPT_PARSER_OK;
     }
     else if(pattern == SCIRPT_PARSER_VALUE_TYPE_STRING)
     {
-      AsciiStrCpy((void *)value, script_mod_buf + (sub_key->offset<<2));
-      AsciiStrCpy(sub_name, sub_key->sub_name);
+      int s1 = sizeof((long)value);
+      int s2 = sizeof(*value);
+      int size_of_value = s1/s2;
+      // AsciiStrCpy((void *)value, script_mod_buf + (sub_key->offset<<2));
+      AsciiStrCpyS((void *)value, size_of_value, script_mod_buf + (sub_key->offset<<2));
+      // AsciiStrCpy(sub_name, sub_key->sub_name);
+      AsciiStrCpyS(sub_name, sizeof(sub_name), sub_key->sub_name);
       *index = j + 1;
 
       return SCRIPT_PARSER_OK;
@@ -249,14 +255,16 @@ INT32 script_parser_fetch(CHAR8 *main_name, CHAR8 *sub_name, INT32 value[], INT3
   if(_test_str_length(main_name) > 31)
   {
     SetMem(main_bkname, 0, 32);
-    AsciiStrnCpy(main_bkname, main_name, 31);
+    //AsciiStrnCpy(main_bkname, main_name, 31);
+    AsciiStrnCpyS(main_bkname, sizeof(main_bkname), main_name, 31);
     main_CHAR8 = main_bkname;
   }
   sub_CHAR8 = sub_name;
   if(_test_str_length(sub_name) > 31)
   {
     SetMem(sub_bkname, 0, 32);
-    AsciiStrnCpy(sub_bkname, sub_name, 31);
+    //AsciiStrnCpy(sub_bkname, sub_name, 31);
+    AsciiStrnCpyS(sub_bkname, sizeof(sub_bkname), sub_name, 31);
     sub_CHAR8 = sub_bkname;
   }
   for(i=0;i<script_main_key_count;i++)
@@ -302,7 +310,8 @@ INT32 script_parser_fetch(CHAR8 *main_name, CHAR8 *sub_name, INT32 value[], INT3
             {
                 return SCRIPT_PARSER_BUFFER_NOT_ENOUGH;
             }
-            AsciiStrCpy( user_gpio_cfg->gpio_name, sub_CHAR8);
+            // AsciiStrCpy( user_gpio_cfg->gpio_name, sub_CHAR8);
+            AsciiStrCpyS(user_gpio_cfg->gpio_name, sizeof(user_gpio_cfg->gpio_name), sub_CHAR8);
             CopyMem(&user_gpio_cfg->port, script_mod_buf + (sub_key->offset<<2),  sizeof(script_gpio_set_t) - 32);
             break;
           }
@@ -348,14 +357,16 @@ INT32 script_parser_fetch_ex(CHAR8 *main_name, CHAR8 *sub_name, INT32 value[], s
   if(_test_str_length(main_name) > 31)
   {
     SetMem(main_bkname, 0, 32);
-    AsciiStrnCpy(main_bkname, main_name, 31);
+    //AsciiStrnCpy(main_bkname, main_name, 31);
+    AsciiStrnCpyS(main_bkname, sizeof(main_bkname), main_name, 31);
     main_CHAR8 = main_bkname;
   }
   sub_CHAR8 = sub_name;
   if(_test_str_length(sub_name) > 31)
   {
     SetMem(sub_bkname, 0, 32);
-    AsciiStrnCpy(sub_bkname, sub_name, 31);
+    //AsciiStrnCpy(sub_bkname, sub_name, 31);
+    AsciiStrnCpyS(sub_bkname, sizeof(sub_bkname), sub_name, 31);
     sub_CHAR8 = sub_bkname;
   }
   for(i=0;i<script_main_key_count;i++)
@@ -404,7 +415,8 @@ INT32 script_parser_fetch_ex(CHAR8 *main_name, CHAR8 *sub_name, INT32 value[], s
           {
             return SCRIPT_PARSER_BUFFER_NOT_ENOUGH;
           }
-          AsciiStrCpy( user_gpio_cfg->gpio_name, sub_CHAR8);
+          // AsciiStrCpy( user_gpio_cfg->gpio_name, sub_CHAR8);
+          AsciiStrCpyS(user_gpio_cfg->gpio_name, sizeof(user_gpio_cfg->gpio_name), sub_CHAR8);
           CopyMem(&user_gpio_cfg->port, script_mod_buf + (sub_key->offset<<2),  sizeof(script_gpio_set_t) - 32);
           *type = SCIRPT_PARSER_VALUE_TYPE_GPIO_WORD;
           break;
@@ -581,7 +593,8 @@ INT32 script_parser_mainkey_get_gpio_count(CHAR8 *main_name)
   if(_test_str_length(main_name) > 31)
   {
     SetMem(main_bkname, 0, 32);
-    AsciiStrnCpy(main_bkname, main_name, 31);
+    //AsciiStrnCpy(main_bkname, main_name, 31);
+    AsciiStrnCpyS(main_bkname, sizeof(main_bkname), main_name, 31);
     main_CHAR8 = main_bkname;
   }
 
@@ -658,7 +671,8 @@ INT32 script_parser_mainkey_get_gpio_cfg(CHAR8 *main_name, void *gpio_cfg, INT32
 
       if(SCIRPT_PARSER_VALUE_TYPE_GPIO_WORD == pattern)
       {
-        AsciiStrCpy( user_gpio_cfg[user_index].gpio_name, sub_key->sub_name);
+        // AsciiStrCpy( user_gpio_cfg[user_index].gpio_name, sub_key->sub_name);
+        AsciiStrCpyS(user_gpio_cfg[user_index].gpio_name, sizeof(user_gpio_cfg[user_index].gpio_name), sub_key->sub_name);
         CopyMem(&user_gpio_cfg[user_index].port, script_mod_buf + (sub_key->offset<<2), sizeof(script_gpio_set_t) - 32);
         user_index++;
         if(user_index >= gpio_count)
@@ -1143,7 +1157,8 @@ UINT32 gpio_request(user_gpio_set_t *gpio_list, UINT32 group_count_max)
       continue;
     }
     //开始保存用户数据
-    AsciiStrCpy(tmp_sys_gpio_data->gpio_name, tmp_user_gpio_data->gpio_name);
+    // AsciiStrCpy(tmp_sys_gpio_data->gpio_name, tmp_user_gpio_data->gpio_name);
+    AsciiStrCpyS(tmp_sys_gpio_data->gpio_name, sizeof(tmp_sys_gpio_data->gpio_name), tmp_user_gpio_data->gpio_name);
     tmp_sys_gpio_data->port                       = port;
     tmp_sys_gpio_data->port_num                   = port_num;
     tmp_sys_gpio_data->user_gpio_status.mul_sel   = tmp_user_gpio_data->mul_sel;
@@ -1582,7 +1597,8 @@ INT32  gpio_get_all_pin_status(UINT32 p_handler, user_gpio_set_t *gpio_status, U
       script_gpio->mul_sel   = tmp_sys_gpio_data->user_gpio_status.mul_sel;   //读出功能数据
       script_gpio->drv_level = tmp_sys_gpio_data->user_gpio_status.drv_level; //读出驱动能力数据
       script_gpio->data      = tmp_sys_gpio_data->user_gpio_status.data;      //读出data数据
-      AsciiStrCpy(script_gpio->gpio_name, tmp_sys_gpio_data->gpio_name);
+      // AsciiStrCpy(script_gpio->gpio_name, tmp_sys_gpio_data->gpio_name);
+      AsciiStrCpyS(script_gpio->gpio_name, sizeof(script_gpio->gpio_name), tmp_sys_gpio_data->gpio_name);
     }
   }
   else
@@ -1620,7 +1636,8 @@ INT32  gpio_get_all_pin_status(UINT32 p_handler, user_gpio_set_t *gpio_status, U
 
       script_gpio->port = port;                          //读出port数据
       script_gpio->port_num  = port_num;                 //读出port_num数据
-      AsciiStrCpy(script_gpio->gpio_name, tmp_sys_gpio_data->gpio_name);
+      // AsciiStrCpy(script_gpio->gpio_name, tmp_sys_gpio_data->gpio_name);
+      AsciiStrCpyS(script_gpio->gpio_name, sizeof(script_gpio->gpio_name), tmp_sys_gpio_data->gpio_name);
 
       port_num_func = (port_num >> 3);
       port_num_pull = (port_num >> 4);
@@ -1709,7 +1726,8 @@ INT32  gpio_get_one_pin_status(UINT32 p_handler, user_gpio_set_t *gpio_status, c
     {
       continue;
     }
-    AsciiStrCpy(gpio_status->gpio_name, tmp_sys_gpio_data->gpio_name);
+    // AsciiStrCpy(gpio_status->gpio_name, tmp_sys_gpio_data->gpio_name);
+    AsciiStrCpyS(gpio_status->gpio_name, sizeof(gpio_status->gpio_name), tmp_sys_gpio_data->gpio_name);
     port                   = tmp_sys_gpio_data->port;
     port_num               = tmp_sys_gpio_data->port_num;
     gpio_status->port      = port;                                              //读出port数据
