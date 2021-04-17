@@ -124,12 +124,6 @@
   ArmPlatformLib|PinePhonePkg/Library/PinePhonePlatformLib/PinePhonePlatformLib.inf
   PlatformBootManagerLib|PinePhonePkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
 
-  # Device Libraries
-  EarlyTimerLib|PinePhonePkg/Library/EarlyTimerLib/EarlyTimerLib.inf
-  ClockLib|PinePhonePkg/Library/ClockLib/ClockLib.inf
-
-  SerialPortLib|PinePhonePkg/Library/SerialPortLib/SerialPortLib.inf
-
   # System Libraries
   EfiResetSystemLib|ArmPkg/Library/ArmPsciResetSystemLib/ArmPsciResetSystemLib.inf
 
@@ -147,6 +141,7 @@
   SunxiKeyLib|PinePhonePkg/Library/KeyLib/SunxiKeyLib.inf
   SunxiTwiLib|PinePhonePkg/Library/SunxiTwiLib/SunxiTwiLib.inf
   SunxiSmcLib|PinePhonePkg/Library/SunxiSmcLib/SunxiSmcLib.inf
+  SerialPortLib|PinePhonePkg/Library/SerialPortLib/SerialPortLib.inf
 
   # ..and some deps
   UncachedMemoryAllocationLib|PinePhonePkg/AncientArmPkg/Library/UncachedMemoryAllocationLib/UncachedMemoryAllocationLib.inf
