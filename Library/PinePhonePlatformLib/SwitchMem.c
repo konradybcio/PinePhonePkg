@@ -21,7 +21,6 @@
 #include <Library/IoLib.h>
 
 #include <Foundation/Types.h>
-#include <Device/T210.h>
 
 VOID
 ArmPlatformGetVirtualMemoryMap(
