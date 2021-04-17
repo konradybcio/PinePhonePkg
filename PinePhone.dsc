@@ -375,7 +375,7 @@
   PinePhonePkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 
   # SMBIOS
-  PinePhonePkg/Drivers/SmBiosTableDxe/SmBiosTableDxe.inf
+  PinePhonePkg/Drivers/SmBiosTableDxe/SunxiSmbiosDxe.inf
 
   # ACPI
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
