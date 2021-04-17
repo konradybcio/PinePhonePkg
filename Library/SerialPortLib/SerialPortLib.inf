@@ -40,8 +40,7 @@
 	ArmPkg/ArmPkg.dec
 	MdePkg/MdePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
-  SunxiPlatformPkg/sun50iw1p1Pkg/sun50iw1p1Pkg.dec
+  PinePhonePkg/PinePhone.dec
   
 [FixedPcd]
  gArmTokenSpaceGuid.PcdFdBaseAddress
