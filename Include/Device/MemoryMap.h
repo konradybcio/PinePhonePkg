@@ -94,7 +94,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] =
 	{
 		// HLOS memory 2
 		0x411F0000,
-		0x3DE10000,
+		0x6E10000,
 		EFI_RESOURCE_SYSTEM_MEMORY,
 		SYSTEM_MEMORY_RESOURCE_ATTR_CAPABILITIES,
 		ARM_MEMORY_REGION_ATTRIBUTE_WRITE_BACK,
@@ -103,7 +103,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] =
 	},
 	{
 		// Display Reserved
-		0x7F000000,
+		0x48000000,
 		0x1000000,
 		EFI_RESOURCE_MEMORY_RESERVED,
 		EFI_RESOURCE_ATTRIBUTE_WRITE_THROUGH_CACHEABLE,
@@ -111,6 +111,16 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] =
 		AddMem,
 		EfiMaxMemoryType
 	},
+	{
+                // HLOS memory 3
+                0x49000000,
+                0x37000000,
+                EFI_RESOURCE_SYSTEM_MEMORY,
+                SYSTEM_MEMORY_RESOURCE_ATTR_CAPABILITIES,
+                ARM_MEMORY_REGION_ATTRIBUTE_WRITE_BACK,
+                AddMem,
+                EfiConventionalMemory
+        },
 	/* Terminator */
 	{ 0 }
 };
