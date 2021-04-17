@@ -125,9 +125,7 @@
   PlatformBootManagerLib|PinePhonePkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
 
   # Device Libraries
-  I2cLib|PinePhonePkg/Library/I2cLib/I2cLib.inf
   EarlyTimerLib|PinePhonePkg/Library/EarlyTimerLib/EarlyTimerLib.inf
-  UtilLib|PinePhonePkg/Library/UtilLib/UtilLib.inf
   ClockLib|PinePhonePkg/Library/ClockLib/ClockLib.inf
 
   SerialPortLib|PinePhonePkg/Library/SerialPortLib/SerialPortLib.inf
