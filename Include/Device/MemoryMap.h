@@ -112,15 +112,15 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] =
 		EfiMaxMemoryType
 	},
 	{
-                // HLOS memory 3
-                0x49000000,
-                0x37000000,
-                EFI_RESOURCE_SYSTEM_MEMORY,
-                SYSTEM_MEMORY_RESOURCE_ATTR_CAPABILITIES,
-                ARM_MEMORY_REGION_ATTRIBUTE_WRITE_BACK,
-                AddMem,
-                EfiConventionalMemory
-        },
+		// HLOS memory 3
+		0x49000000,
+		0x37000000,
+		EFI_RESOURCE_SYSTEM_MEMORY,
+		SYSTEM_MEMORY_RESOURCE_ATTR_CAPABILITIES,
+		ARM_MEMORY_REGION_ATTRIBUTE_WRITE_BACK,
+		AddMem,
+		EfiConventionalMemory
+	},
 	/* Terminator */
 	{ 0 }
 };
