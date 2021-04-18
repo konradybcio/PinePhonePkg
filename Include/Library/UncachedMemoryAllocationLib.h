@@ -1,0 +1,1 @@
+../../AncientArmPkg/Include/Library/UncachedMemoryAllocationLib.h
