@@ -18,7 +18,6 @@
 #include "de/bsp_display.h"
 #include "disp_sys_intf.h"
 
-
 /* cache flush flags */
 #define  CACHE_FLUSH_I_CACHE_REGION       0
 #define  CACHE_FLUSH_D_CACHE_REGION       1
@@ -601,9 +600,7 @@ EXPORT_SYMBOL(disp_sys_power_disable);
 
 uintptr_t disp_sys_pwm_request(u32 pwm_id)
 {
-#if defined(CONFIG_ARCH_SUN50IW1P1)
   pwm_request(pwm_id, "lcd");
-#endif
   return (pwm_id + 0x100);
 }
 
@@ -617,11 +614,7 @@ int disp_sys_pwm_enable(uintptr_t p_handler)
   int ret = 0;
   int pwm_id = p_handler - 0x100;
 
-#if defined(CONFIG_ARCH_SUN50IW1P1)
   ret = pwm_enable(pwm_id);
-#else
-  ret = sunxi_pwm_enable(pwm_id);
-#endif
 
   return ret;
 
@@ -632,11 +625,7 @@ int disp_sys_pwm_disable(uintptr_t p_handler)
   int ret = 0;
   int pwm_id = p_handler - 0x100;
 
-#if defined(CONFIG_ARCH_SUN50IW1P1)
   pwm_disable(pwm_id);
-#else
-  sunxi_pwm_disable(pwm_id);
-#endif
 
   return ret;
 }
@@ -646,11 +635,7 @@ int disp_sys_pwm_config(uintptr_t p_handler, int duty_ns, int period_ns)
   int ret = 0;
   int pwm_id = p_handler - 0x100;
 
-#if defined(CONFIG_ARCH_SUN50IW1P1)
   ret = pwm_config(pwm_id, duty_ns, period_ns);
-#else
-  ret = sunxi_pwm_config(pwm_id, duty_ns, period_ns);
-#endif
   return ret;
 }
 
@@ -659,11 +644,7 @@ int disp_sys_pwm_set_polarity(uintptr_t p_handler, int polarity)
   int ret = 0;
   int pwm_id = p_handler - 0x100;
 
-#if defined(CONFIG_ARCH_SUN50IW1P1)
   ret = pwm_set_polarity(pwm_id, polarity);
-#else
-  ret = sunxi_pwm_set_polarity(pwm_id, polarity);
-#endif
 
   return ret;
 }

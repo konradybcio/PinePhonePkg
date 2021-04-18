@@ -50,21 +50,26 @@ typedef struct {
     EFI_DEVICE_PATH EndDevicePath;
 } DISPLAY_DEVICE_PATH;
 
-DISPLAY_DEVICE_PATH gDisplayDevicePath =
-{
+DISPLAY_DEVICE_PATH gDisplayDevicePath = {
   {
-    HARDWARE_DEVICE_PATH,
-    HW_VENDOR_DP,
-    (UINT8)(sizeof(VENDOR_DEVICE_PATH)),
-    (UINT8)((sizeof(VENDOR_DEVICE_PATH)) >> 8),
+    {
+      HARDWARE_DEVICE_PATH,
+      HW_VENDOR_DP,
+      {
+        (UINT8)(sizeof(VENDOR_DEVICE_PATH)),
+        (UINT8)((sizeof(VENDOR_DEVICE_PATH)) >> 8),
+      }
+    },
     EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID
   },
   {
-    END_DEVICE_PATH_TYPE,
-    END_ENTIRE_DEVICE_PATH_SUBTYPE,
-    sizeof (EFI_DEVICE_PATH_PROTOCOL),
-    0
-  }
+      END_DEVICE_PATH_TYPE,
+      END_ENTIRE_DEVICE_PATH_SUBTYPE,
+      {
+        sizeof (EFI_DEVICE_PATH_PROTOCOL),
+        0
+      }
+    }
 };
 
 unsigned int    g_layer_para,g_layer_para1;

@@ -172,7 +172,7 @@ static int sunxi_pwm_pin_set_state(char *dev_name, char *name)
   return ret;
 }
 
-int sunxi_pwm_set_polarity(struct sunxi_pwm_chip* pchip, enum pwm_polarity polarity)
+int sunxi_pwm_set_polarity2(struct sunxi_pwm_chip* pchip, enum pwm_polarity polarity)
 {
     uint temp;
   unsigned int reg_offset, reg_shift;
@@ -208,7 +208,7 @@ int sunxi_pwm_set_polarity(struct sunxi_pwm_chip* pchip, enum pwm_polarity polar
     return 0;
 }
 
-int sunxi_pwm_config(struct sunxi_pwm_chip* pchip, int duty_ns, int period_ns)
+int sunxi_pwm_config2(struct sunxi_pwm_chip* pchip, int duty_ns, int period_ns)
 {
 
 
@@ -309,7 +309,7 @@ int sunxi_pwm_config(struct sunxi_pwm_chip* pchip, int duty_ns, int period_ns)
     return 0;
 }
 
-int sunxi_pwm_enable(struct sunxi_pwm_chip* pchip)
+int sunxi_pwm_enable2(struct sunxi_pwm_chip* pchip)
 {
   int value;
   char pin_name[5];
@@ -370,7 +370,7 @@ int sunxi_pwm_enable(struct sunxi_pwm_chip* pchip)
     return 0;
 }
 
-void sunxi_pwm_disable(struct sunxi_pwm_chip* pchip)
+void sunxi_pwm_disable2(struct sunxi_pwm_chip* pchip)
 {
     uint temp;
   int pwm, base;
@@ -465,10 +465,10 @@ struct pwm_ops {
 };
 
 static struct pwm_ops sunxi_pwm_ops = {
-  .config = sunxi_pwm_config,
-  .enable = sunxi_pwm_enable,
-  .disable = sunxi_pwm_disable,
-  .set_polarity = sunxi_pwm_set_polarity,
+  .config = sunxi_pwm_config2,
+  .enable = sunxi_pwm_enable2,
+  .disable = sunxi_pwm_disable2,
+  .set_polarity = sunxi_pwm_set_polarity2,
 };
 
 

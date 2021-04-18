@@ -43,7 +43,7 @@ extern void * memcpy(void *dest, const void *src, UINT32 count);
 
 //string 
 #define strcmp(x,y)           AsciiStrCmp((x),(y))
-#define strcpy(x,y)           AsciiStrCpy((x),(y))
+#define strcpy(x,y)           AsciiStrCpyS((x), (sizeof(x)), (y))
 #define strlen(x)             AsciiStrLen((x))
 #define strncmp(x,y,z)        AsciiStrnCmp((x),(y),(z))
 

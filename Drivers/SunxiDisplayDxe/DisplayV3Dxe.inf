@@ -98,17 +98,13 @@
   
 [binaries.common]
   
-    
-[BuildOptions]
-#*_ARMLINUXGCC_ARM_DLINK_FLAGS ==  /home/wangwei/seattle_uefi/firmware/edk2/SunxiPlatformPkg/Driver/SunxiDisplayDxe/sunxi_video_v2/libdsi /home/wangwei/seattle_uefi/firmware/edk2/SunxiPlatformPkg/Driver/SunxiDisplayDxe/sunxi_video_v2/libedp
- 
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
+  PinePhonePkg/PinePhone.dec
 
 [LibraryClasses]
   BaseLib
@@ -126,6 +122,8 @@
   HdmiLib
 # Sun50iW1P1HdmiLib
 
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-discarded-array-qualifiers -Wno-tautological-compare
 	
 [Protocols]
   gEfiGraphicsOutputProtocolGuid

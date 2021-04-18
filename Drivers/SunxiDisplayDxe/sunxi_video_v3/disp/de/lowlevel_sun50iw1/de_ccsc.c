@@ -241,7 +241,7 @@ inline int IntRightShift(int datain, unsigned int shiftbit)
 }
 
 
-inline __s64 IntRightShift64(__s64 datain, unsigned int shiftbit)
+__s64 IntRightShift64(__s64 datain, unsigned int shiftbit)
 {
   __s64 dataout;
   __s64 tmp;

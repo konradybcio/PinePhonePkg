@@ -98,20 +98,20 @@ s32 hdmi_core_initial(bool sw_only)
   memset(&audio_info,0,sizeof(HDMI_AUDIO_INFO));
   mutex_init(&hdmi_lock);
 
-  bsp_hdmi_set_version(hdmi_get_soc_version());
-  bsp_hdmi_set_func(&func);
+  //bsp_hdmi_set_version(hdmi_get_soc_version());
+  //bsp_hdmi_set_func(&func);
   hdmi_para_init();
   if (sw_only) {
     video_enable = 1;
     hdmi_state = HDMI_State_HPD_Done;
-    if (bsp_hdmi_get_hpd()) {
+    //if (bsp_hdmi_get_hpd()) {
       hdmi_edid_parse();
       video_on = 1;
       if (0 == (hdmi_hpd_mask & 0x100))
         hdmi_hpd_event();
-    }
+    //}
   } else {
-    bsp_hdmi_init();
+    //bsp_hdmi_init();
   }
 
   return 0;
@@ -124,7 +124,7 @@ void hdmi_core_exit(void)
 
 void hdmi_core_set_base_addr(uintptr_t base_addr)
 {
-  bsp_hdmi_set_addr(base_addr);
+ // bsp_hdmi_set_addr(base_addr);
 }
 
 static s32 main_Hpd_Check(void)
@@ -135,10 +135,10 @@ static s32 main_Hpd_Check(void)
   for (i=0;i<3;i++) {
     if (hdmi_hpd_mask & 0x10)
       times += (hdmi_hpd_mask & 0x1);//for debug
-    else if ( bsp_hdmi_get_hpd())
-    {
-        times++;
-    }
+    //else if ( bsp_hdmi_get_hpd())
+    //{
+    //    times++;
+    //}
     if ((cts_enable==1) && (hdcp_enable==1))
       hdmi_delay_ms(20);
     else {
@@ -179,8 +179,8 @@ s32 hdmi_core_loop(void)
 
     case HDMI_State_Idle:
       __inf("HDMI_State_Idle\n");
-      bsp_hdmi_hrst();
-      bsp_hdmi_standby();
+      //bsp_hdmi_hrst();
+      //bsp_hdmi_standby();
 
       hdmi_state = HDMI_State_Wait_Hpd;
     case HDMI_State_Wait_Hpd:
@@ -208,7 +208,7 @@ s32 hdmi_core_loop(void)
 
     case HDMI_State_HPD_Done:
       if (video_on && hdcp_enable)
-        bsp_hdmi_hdl();
+        //bsp_hdmi_hdl();
       return 0;
     default:
       __wrn(" unkonwn hdmi state, set to idle\n");
@@ -391,11 +391,11 @@ static s32 audio_config_internal(void)
       return 0;
     }
 
-    if (bsp_hdmi_audio(&glb_audio_para))
-    {
-      __wrn("set hdmi audio error!\n");
-      return -1;
-    }
+    //if (bsp_hdmi_audio(&glb_audio_para))
+    //{
+    //  __wrn("set hdmi audio error!\n");
+    //  return -1;
+    //}
 
     audio_on = 1;
   }
@@ -460,14 +460,14 @@ s32 hdmi_core_set_video_enable(bool enable)
     video_config(glb_video_para.vic);
     __inf("hdmi_core_set_video_enable, vic:%d,is_hdmi:%d,is_yuv:%d,is_hcts:%d\n",
       glb_video_para.vic, glb_video_para.is_hdmi,glb_video_para.is_yuv, glb_video_para.is_hcts);
-    if (bsp_hdmi_video(&glb_video_para))
-    {
-      __wrn("set hdmi video error!\n");
-      ret = -1;
-      goto video_en_end;
-    }
+    //if (bsp_hdmi_video(&glb_video_para))
+    //{
+     // __wrn("set hdmi video error!\n");
+     // ret = -1;
+      //goto video_en_end;
+    //}
 
-    bsp_hdmi_set_video_en(enable);
+    //bsp_hdmi_set_video_en(enable);
     video_on = 1;
 #if defined(CONFIG_SND_SUNXI_SOC_HDMIAUDIO)
     if (((glb_audio_para.type != 1) && (true == audio_enable)) ||
@@ -484,13 +484,13 @@ s32 hdmi_core_set_video_enable(bool enable)
   else
   {
     video_on = 0;
-    bsp_hdmi_set_video_en(enable);
+    //bsp_hdmi_set_video_en(enable);
   }
 
   video_enable = enable;
 
-video_en_end:
-  mutex_unlock(&hdmi_lock);
+//video_en_end:
+//  mutex_unlock(&hdmi_lock);
   return ret;
 }
 
@@ -529,7 +529,7 @@ static s32 video_config(u32 vic)
   if (hdcp_enable)
   {
     glb_video_para.is_hcts = 1;
-    bsp_hdmi_hrst();
+    //bsp_hdmi_hrst();
     __inf("hdmi full function\n");
   }
   else
@@ -548,7 +548,7 @@ s32 hdmi_core_enter_lp(void)
   __inf("video enter lp\n");
 
   hdmi_state = HDMI_State_Idle;
-  bsp_hdmi_standby();
+  //bsp_hdmi_standby();
   hdmi_para_reset();
 
   return 0;
@@ -556,7 +556,7 @@ s32 hdmi_core_enter_lp(void)
 
 s32 hdmi_core_exit_lp(void)
 {
-  bsp_hdmi_init();
+  //bsp_hdmi_init();
 
   return 0;
 }

@@ -65,7 +65,7 @@ uintptr_t disp_getprop_regbase(char *main_name, char *sub_name, u32 index)
   uintptr_t reg_base = 0;
   CHAR8 compat[32] = {0};
 
-  AsciiStrCat(compat, "test");
+  AsciiStrCatS(compat, sizeof(compat), "test");
   int value[32] = {0x01000000,0x01c0c000,0x01c0d000,0x01ca0000};
   reg_base = value[index];
   
@@ -303,7 +303,7 @@ s32 drv_disp_init(void)
   drv_disp_check_spec();
 
   /* pwm init */
-  pwm_init();
+  //pwm_init(); //driver code says it does nothing on a64
 
   memset(&g_disp_drv, 0, sizeof(disp_drv_info));
   para = &g_disp_drv.para;

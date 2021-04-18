@@ -45,7 +45,7 @@ static void edid_read_data(u8 block,u8 *buf)
   u8 * pbuf = buf + 128*block;
   u8 offset = (block&0x01)? 128:0;
 
-  bsp_hdmi_ddc_read(Explicit_Offset_Address_E_DDC_Read,block>>1,offset,128,(char*)pbuf);
+  //bsp_hdmi_ddc_read(Explicit_Offset_Address_E_DDC_Read,block>>1,offset,128,(char*)pbuf);
 
   ////////////////////////////////////////////////////////////////////////////
   __inf("Sink : EDID bank %d:\n",block);

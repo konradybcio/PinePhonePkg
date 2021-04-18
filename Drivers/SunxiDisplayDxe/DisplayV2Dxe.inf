@@ -98,16 +98,13 @@
  # LIB| sunxi_video_v2/de_bsp/de/lowlevel_sun9iw1/edp.lib
   
     
-[BuildOptions]
-#*_ARMLINUXGCC_ARM_DLINK_FLAGS ==  /home/wangwei/seattle_uefi/firmware/edk2/SunxiPlatformPkg/Driver/SunxiDisplayDxe/sunxi_video_v2/libdsi /home/wangwei/seattle_uefi/firmware/edk2/SunxiPlatformPkg/Driver/SunxiDisplayDxe/sunxi_video_v2/libedp
- 
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
+  PinePhonePkg/PinePhone.dec
 
 [LibraryClasses]
   BaseLib
