@@ -1,3 +1,5 @@
+DONT TRY HDMI IT WILL EXPLODE
+
 bash:
 
 (cd edk2dir/edk2)
