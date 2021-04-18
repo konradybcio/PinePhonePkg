@@ -24,9 +24,9 @@
 #include <Library/DebugLib.h>
 #include <Library/PcdLib.h>
 #include <Library/IoLib.h>
-#include <Sun50iW1P1/timer.h>
-#include <Sun50iW1P1/platform.h>
-#include <Sun50iW1P1/ccmu.h>
+#include <timer.h>
+#include <platform.h>
+#include <ccmu.h>
 #include <Library/DebugLib.h>
 
 /* init timer register */

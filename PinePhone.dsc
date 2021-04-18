@@ -56,8 +56,8 @@
   ArmDisassemblerLib|ArmPkg/Library/ArmDisassemblerLib/ArmDisassemblerLib.inf
   ArmGenericTimerCounterLib|ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.inf
   TimeBaseLib|EmbeddedPkg/Library/TimeBaseLib/TimeBaseLib.inf
-  #TimerLib|ArmPkg/Library/ArmArchTimerLib/ArmArchTimerLib.inf
-  TimerLib|PinePhonePkg/Library/TimerLib/TimerLib.inf
+  TimerLib|ArmPkg/Library/ArmArchTimerLib/ArmArchTimerLib.inf
+  #TimerLib|PinePhonePkg/Library/TimerLib/TimerLib.inf #sunxi one seems broken :/
   ArmSmcLib|ArmPkg/Library/ArmSmcLib/ArmSmcLib.inf
   ArmHvcLib|ArmPkg/Library/ArmHvcLib/ArmHvcLib.inf
   ArmGicLib|ArmPkg/Drivers/ArmGic/ArmGicLib.inf
@@ -143,6 +143,7 @@
   SunxiTwiLib|PinePhonePkg/Library/SunxiTwiLib/SunxiTwiLib.inf
   SunxiSmcLib|PinePhonePkg/Library/SunxiSmcLib/SunxiSmcLib.inf
   SerialPortLib|PinePhonePkg/Library/SerialPortLib/SerialPortLib.inf
+  HdmiLib|PinePhonePkg/Library/HdmiLib/HdmiLib_GCC.inf
 
   # ..and some deps
   UncachedMemoryAllocationLib|PinePhonePkg/AncientArmPkg/Library/UncachedMemoryAllocationLib/UncachedMemoryAllocationLib.inf
@@ -359,7 +360,7 @@
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
   # DisplAYY
-  SunxiPlatformPkg/Driver/SunxiDisplayDxe/DisplayV3Dxe.inf
+  PinePhonePkg/Drivers/SunxiDisplayDxe/DisplayV3Dxe.inf
   # PinePhonePkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 
   # SMBIOS

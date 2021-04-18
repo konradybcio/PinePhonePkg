@@ -13,69 +13,50 @@
 
 .text
 .align 3
-.arch_extension sec
 
 GCC_ASM_EXPORT(ArmCallSmc)
-GCC_ASM_EXPORT(ArmCallSmcArg1)
-GCC_ASM_EXPORT(ArmCallSmcArg2)
-GCC_ASM_EXPORT(ArmCallSmcArg3)
 GCC_ASM_EXPORT(__sunxi_smc_call)
 
+/* Code from https://github.com/ARM-software/arm-enterprise-acs/blob/master/mpam/platform/pal_uefi_acpi_override/src/AArch64/arm_smc.S */
 ASM_PFX(ArmCallSmc):
-    push    {r1}
-    mov     r1, r0
-    ldr     r0,[r1]
-    smc     #0
-    str     r0,[r1]
-    pop     {r1}
-    bx      lr
+  // Push x0 on the stack - The stack must always be quad-word aligned
+  str   x0, [sp, #-16]!
 
-ASM_PFX(ArmCallSmcArg1):
-    push    {r2-r3}
-    mov     r2, r0
-    mov     r3, r1
-    ldr     r0,[r2]
-    ldr     r1,[r3]
-    smc     #0
-    str     r0,[r2]
-    str     r1,[r3]
-    pop     {r2-r3}
-    bx      lr
+  // Load the SMC arguments values into the appropriate registers
+  ldp   x6, x7, [x0, #48]
+  ldp   x4, x5, [x0, #32]
+  ldp   x2, x3, [x0, #16]
+  ldp   x0, x1, [x0, #0]
 
-ASM_PFX(ArmCallSmcArg2):
-    push    {r3-r5}
-    mov     r3, r0
-    mov     r4, r1
-    mov     r5, r2
-    ldr     r0,[r3]
-    ldr     r1,[r4]
-    ldr     r2,[r5]
-    smc     #0
-    str     r0,[r3]
-    str     r1,[r4]
-    str     r2,[r5]
-    pop     {r3-r5}
-    bx      lr
+  smc   #0
 
-ASM_PFX(ArmCallSmcArg3):
-    push    {r4-r7}
-    mov     r4, r0
-    mov     r5, r1
-    mov     r6, r2
-    mov     r7, r3
-    ldr     r0,[r4]
-    ldr     r1,[r5]
-    ldr     r2,[r6]
-    ldr     r3,[r7]
-    smc     #0
-    str     r0,[r4]
-    str     r1,[r5]
-    str     r2,[r6]
-    str     r3,[r7]
-    pop     {r4-r7}
-    bx      lr
-    
+  // Pop the ARM_SMC_ARGS structure address from the stack into x9
+  ldr   x9, [sp], #16
+
+  // Store the SMC returned values into the ARM_SMC_ARGS structure.
+  // A SMC call can return up to 4 values - we do not need to store back x4-x7.
+  stp   x2, x3, [x9, #16]
+  stp   x0, x1, [x9, #0]
+
+  mov   x0, x9
+
+  ret
+/* End code from https://github.com/ARM-software/arm-enterprise-acs/blob/master/mpam/platform/pal_uefi_acpi_override/src/AArch64/arm_smc.S */
+
 ASM_PFX(__sunxi_smc_call):
-	stmfd	sp!, {r4-r12, lr}	 //save reg state
+	//stmfd	sp!, {r4-r12, lr}	 //save reg state
+	stp	x4, x5, [sp, 16]!
+        stp     x6, x7, [sp, 16]!
+        stp     x8, x9, [sp, 16]!
+        stp     x10, x11, [sp, 16]!
+        stp     x12, lr, [sp, 16]!
 	smc #0
-	ldmfd	sp!, {r4-r12, pc} //restore saved regs and return
+
+	//ldmfd	sp!, {r4-r12, pc} //restore saved regs and return
+	ldp	x4, x5, [sp, 16]!
+	ldp     x6, x7, [sp, 16]
+	ldp     x8, x9, [sp, 16]
+	ldp     x10, x11, [sp, 16]
+	ldr     x12, [sp, 16] //what to do with pc yikes
+	mov	lr, x12
+	ret
