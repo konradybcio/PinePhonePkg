@@ -332,7 +332,8 @@
 
 [Components.common]
   # PEI/SEC
-  ArmPlatformPkg/PrePi/PeiUniCore.inf
+  # ArmPlatformPkg/PrePi/PeiUniCore.inf
+  PinePhonePkg/PrePi/PeiMPCore.inf
 
   # DXE
   MdeModulePkg/Core/Dxe/DxeMain.inf {

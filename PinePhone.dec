@@ -65,6 +65,7 @@
   gPinePhonePkgTokenSpaceGuid.PcdTrustZoneCarveoutSize|0|UINT64|0x0000a404
 
   # sunxi drivers
+  gEmbeddedTokenSpaceGuid.PcdCacheEnable|TRUE|BOOLEAN|0x00000042
   gPinePhonePkgTokenSpaceGuid.PcdSunxiGpmcOffset|0x00000000|UINT32|0x00000203
   gPinePhonePkgTokenSpaceGuid.PcdSunxiMMCHS1Base|0x00000000|UINT32|0x00000204
   gPinePhonePkgTokenSpaceGuid.PcdSunxiArchTimer|3|UINT32|0x00000205
@@ -74,14 +75,15 @@
   gPinePhonePkgTokenSpaceGuid.PcdMmchsTimerFreq100NanoSeconds|1000000|UINT32|0x00000209
   gPinePhonePkgTokenSpaceGuid.PcdFrameBufferBase|0x48000000|UINT64|0x00000210
   gPinePhonePkgTokenSpaceGuid.PcdFrameBufferSize|0x1000000|UINT64|0x00000211
-  gPinePhonePkgTokenSpaceGuid.PcdMpParkSharedBase|0|UINT64|0x00000212
-  gPinePhonePkgTokenSpaceGuid.PcdMpParkSharedSize|0|UINT64|0x00000213
+  gSunxiTokenSpaceGuid.PcdMpParkSharedBase|0x7EF80000|UINT64|0x00000212
+  gSunxiTokenSpaceGuid.PcdMpParkSharedSize|0x00080000|UINT64|0x00000213
   gPinePhonePkgTokenSpaceGuid.PcdGpioBase|0x01c20800|UINT32|0x00000214
   gPinePhonePkgTokenSpaceGuid.PcdRtcBase|0x01f00000|UINT32|0x00000215
   gPinePhonePkgTokenSpaceGuid.PcdScriptEarlyBase|0x43000000|UINT32|0x00000216
   gPinePhonePkgTokenSpaceGuid.PcdCpusGpioBase|0x01F02C00|UINT32|0x00000217
   gPinePhonePkgTokenSpaceGuid.PcdKernelImageOffset|0x00007800|UINT64|0x00000218
   gPinePhonePkgTokenSpaceGuid.PcdKernelScriptOffset|0x03000000|UINT64|0x00000219
+  gEmbeddedTokenSpaceGuid.PcdPrePiCpuMemorySize|32|UINT8|0x00000010
 
 [PcdsDynamic]
   gPinePhonePkgTokenSpaceGuid.PcdDynamicStub|0|UINT64|0x0001a400
