@@ -56,7 +56,8 @@
   ArmDisassemblerLib|ArmPkg/Library/ArmDisassemblerLib/ArmDisassemblerLib.inf
   ArmGenericTimerCounterLib|ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.inf
   TimeBaseLib|EmbeddedPkg/Library/TimeBaseLib/TimeBaseLib.inf
-  TimerLib|ArmPkg/Library/ArmArchTimerLib/ArmArchTimerLib.inf
+  #TimerLib|ArmPkg/Library/ArmArchTimerLib/ArmArchTimerLib.inf
+  TimerLib|PinePhonePkg/Library/TimerLib/TimerLib.inf
   ArmSmcLib|ArmPkg/Library/ArmSmcLib/ArmSmcLib.inf
   ArmHvcLib|ArmPkg/Library/ArmHvcLib/ArmHvcLib.inf
   ArmGicLib|ArmPkg/Drivers/ArmGic/ArmGicLib.inf
@@ -357,8 +358,9 @@
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
-  # Display
-  PinePhonePkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
+  # DisplAYY
+  SunxiPlatformPkg/Driver/SunxiDisplayDxe/DisplayV3Dxe.inf
+  # PinePhonePkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 
   # SMBIOS
   PinePhonePkg/Drivers/SmBiosTableDxe/SunxiSmbiosDxe.inf
