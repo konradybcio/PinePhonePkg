@@ -218,7 +218,10 @@
 
 [PcdsFixedAtBuild.common]
   gArmPlatformTokenSpaceGuid.PcdCoreCount|4
+  gArmPlatformTokenSpaceGuid.PcdClusterCount|1
+
   gArmTokenSpaceGuid.PcdVFPEnabled|1
+  gArmTokenSpaceGuid.PcdArmMachineType|4137
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
@@ -231,7 +234,8 @@
   # Manually set the stack
   # Size of the region used by UEFI in permanent memory (Reserved 128MB)
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|0x00040000      # 64K stack
-  gArmPlatformTokenSpaceGuid.PcdCPUCorePrimaryStackSize|0x40000
+  gArmPlatformTokenSpaceGuid.PcdCPUCorePrimaryStackSize|0x20000
+  gArmPlatformTokenSpaceGuid.PcdCPUCoreSecondaryStackSize|0x20000
   gArmPlatformTokenSpaceGuid.PcdSystemMemoryUefiRegionSize|0x10000000
 
   ## Default Terminal Type
@@ -239,13 +243,11 @@
   gEfiMdePkgTokenSpaceGuid.PcdDefaultTerminalType|4
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x21, 0xaa, 0x2c, 0x46, 0x14, 0x76, 0x03, 0x45, 0x83, 0x6e, 0x8a, 0xb6, 0xf4, 0x66, 0x23, 0x31 }
-  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|3
+  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|30
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"Pine64 PinePhone AArch64 UEFI"
-  # According to TRM
-  # This no longer presents. Just know it is sufficient.
-  # gEmbeddedTokenSpaceGuid.PcdPrePiCpuMemorySize|34
-  gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|16
+  # gEmbeddedTokenSpaceGuid.PcdPrePiCpuMemorySize|32
+  gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|0 # maybe 16, lol
 
   # ARM platforms usually have fixed memory
   gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange|FALSE

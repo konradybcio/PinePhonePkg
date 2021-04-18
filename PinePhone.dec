@@ -49,9 +49,7 @@
 
 [PcdsFixedAtBuild.common]
   # Simple FrameBuffer
-  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0xc0000000|UINT32|0x0000a400
-  # It's actually vertical.
-  # Maybe in the future we can workaround this in EL2
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x48000000|UINT32|0x0000a400
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|720|UINT32|0x0000a401
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1440|UINT32|0x0000a402
   gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32|UINT32|0x0000a403
@@ -73,8 +71,8 @@
   gPinePhonePkgTokenSpaceGuid.PcdSunxiDebugAgentTimer|5|UINT32|0x00000207
   gPinePhonePkgTokenSpaceGuid.PcdDebugAgentTimerFreqNanoSeconds|77|UINT32|0x00000208
   gPinePhonePkgTokenSpaceGuid.PcdMmchsTimerFreq100NanoSeconds|1000000|UINT32|0x00000209
-  gPinePhonePkgTokenSpaceGuid.PcdFrameBufferBase|0|UINT64|0x00000210
-  gPinePhonePkgTokenSpaceGuid.PcdFrameBufferSize|0|UINT64|0x00000211
+  gPinePhonePkgTokenSpaceGuid.PcdFrameBufferBase|0x48000000|UINT64|0x00000210
+  gPinePhonePkgTokenSpaceGuid.PcdFrameBufferSize|0x1000000|UINT64|0x00000211
   gPinePhonePkgTokenSpaceGuid.PcdMpParkSharedBase|0|UINT64|0x00000212
   gPinePhonePkgTokenSpaceGuid.PcdMpParkSharedSize|0|UINT64|0x00000213
   gPinePhonePkgTokenSpaceGuid.PcdGpioBase|0x01c20800|UINT32|0x00000214
