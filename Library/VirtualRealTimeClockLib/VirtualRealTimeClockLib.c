@@ -47,7 +47,7 @@ LibGetTime(
 	OUT  EFI_TIME_CAPABILITIES  *Capabilities
 )
 {
-	UINT32 Freq = ArmGenericTimerGetTimerFreq();
+	UINT32 Freq = ArmGenericTimerGetTimerFreq(); //24000000
 
 	if (Time == NULL) {
 		return EFI_INVALID_PARAMETER;
