@@ -217,7 +217,7 @@
   gArmTokenSpaceGuid.PcdRelocateVectorTable|FALSE
 
 [PcdsFixedAtBuild.common]
-  gArmPlatformTokenSpaceGuid.PcdCoreCount|4
+  gArmPlatformTokenSpaceGuid.PcdCoreCount|1 # 4..
   gArmPlatformTokenSpaceGuid.PcdClusterCount|1
 
   gArmTokenSpaceGuid.PcdVFPEnabled|1
@@ -251,18 +251,18 @@
 
   # ARM platforms usually have fixed memory
   gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange|FALSE
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIReclaimMemory|0
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIReclaimMemory|10
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIMemoryNVS|0
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiReservedMemoryType|0
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesData|300
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesCode|150
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesCode|1000
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesData|12000
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesData|80
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesCode|40
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesCode|400
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesData|800
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderCode|20
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderData|0
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderData|10
 
   # More ACPI
-  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"NVIDIA"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"AWTECH"
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x4f444e45544e494e
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x00000001
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x55424D49
@@ -296,20 +296,6 @@
   # Version Info
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"Little Moe, LLC."
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"0.01"
-  gPinePhonePkgTokenSpaceGuid.PcdSmbiosSystemModel|"Pine64 PinePhone (PiPh)"
-  gPinePhonePkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Alwinner A64"
-  gPinePhonePkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"PiPh"
-
-  # Display
-  # Simple FrameBuffer
-  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x48000000
-  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|720
-  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1440
-  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
-  # gPinePhonePkgTokenSpaceGuid.PcdFrameBufferSize|0x1000000
-
-  # TrustZone carveout, 14MB below slot 1 top
-  gPinePhonePkgTokenSpaceGuid.PcdTrustZoneCarveoutSize|0xe00000
 
   #
   # Make VariableRuntimeDxe work at emulated non-volatile variable mode.
@@ -324,11 +310,13 @@
   gPinePhonePkgTokenSpaceGuid.PcdCpusGpioBase|0x01f02c00
 
   # Timers
-  gPinePhonePkgTokenSpaceGuid.PcdSunxiArchTimer|3
-  gPinePhonePkgTokenSpaceGuid.PcdSunxiFreeTimer|4
   gEmbeddedTokenSpaceGuid.PcdTimerPeriod|100000
   gEmbeddedTokenSpaceGuid.PcdEmbeddedPerformanceCounterPeriodInNanoseconds|77
   gEmbeddedTokenSpaceGuid.PcdEmbeddedPerformanceCounterFrequencyInHz|13000000
+
+  # These seem unused!
+  #gPinePhonePkgTokenSpaceGuid.PcdSunxiArchTimer|3
+  #gPinePhonePkgTokenSpaceGuid.PcdSunxiFreeTimer|4
 
 [Components.common]
   # PEI/SEC
