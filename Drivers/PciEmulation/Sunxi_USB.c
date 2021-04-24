@@ -31,11 +31,11 @@
 
 #include <Interinc/sunxi_uefi.h>
 #include <Sunxi_type/Sunxi_type.h>
-#include <Sun50iW1P1/platform.h>
-#include <Sun50iW1P1/cpu.h>
-#include <Sun50iW1P1/ccmu.h>
-#include <Sun50iW1P1/clock.h>
-//#include <Sun50iW1P1/usb.h>
+#include <platform.h>
+#include <cpu.h>
+#include <ccmu.h>
+#include <clock.h>
+//#include <usb.h>
 #include "Sunxi_USB2Phy.h"
 
 #define AXP_81X_NAME  ("axp81X")

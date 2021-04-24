@@ -42,35 +42,74 @@ typedef struct {
 #define EFI_PCI_IO_PRIVATE_DATA_FROM_THIS(a)  CR(a, EFI_PCI_IO_PRIVATE_DATA, PciIoProtocol, EFI_PCI_IO_PRIVATE_DATA_SIGNATURE)
 
 EFI_PCI_IO_DEVICE_PATH PciIoDevicePathUSBHost[2] = {
-{
   {
-    { ACPI_DEVICE_PATH, ACPI_DP, sizeof (ACPI_HID_DEVICE_PATH), 0},
-    EISA_PNP_ID(0x0A03),  // HID
-    0                     // UID
-  },
+    {
+      {
+        ACPI_DEVICE_PATH,
+        ACPI_DP,
+        {
+          sizeof(ACPI_HID_DEVICE_PATH),
+          0
+        }
+      },
+      EISA_PNP_ID(0x0A03),  // HID
+      0                     // UID
+    },
+    {
+      {
+        HARDWARE_DEVICE_PATH,
+        HW_PCI_DP,
+        {
+          sizeof(PCI_DEVICE_PATH),
+          0
+        }
+      },
+      0,
+      0
+    },
+    {
+      END_DEVICE_PATH_TYPE,
+      END_ENTIRE_DEVICE_PATH_SUBTYPE,
+      {
+        sizeof(EFI_DEVICE_PATH_PROTOCOL),
+        0
+      }
+    }
+  }, 
   {
-    { HARDWARE_DEVICE_PATH, HW_PCI_DP, sizeof (PCI_DEVICE_PATH), 0},
-    0,
-    0
-  },
-  { END_DEVICE_PATH_TYPE, END_ENTIRE_DEVICE_PATH_SUBTYPE, sizeof (EFI_DEVICE_PATH_PROTOCOL), 0}
-},
-  
-{
-  {
-    { ACPI_DEVICE_PATH, ACPI_DP, sizeof (ACPI_HID_DEVICE_PATH), 0},
-    EISA_PNP_ID(0x0A03),  // HID
-    1                     // UID
-  },
-  {
-    { HARDWARE_DEVICE_PATH, HW_PCI_DP, sizeof (PCI_DEVICE_PATH), 0},
-    0,
-    1
-  },
-{ END_DEVICE_PATH_TYPE, END_ENTIRE_DEVICE_PATH_SUBTYPE, sizeof (EFI_DEVICE_PATH_PROTOCOL), 0}
-  
-}
-
+    {
+      {
+        ACPI_DEVICE_PATH,
+        ACPI_DP,
+        {
+          sizeof(ACPI_HID_DEVICE_PATH),
+          0
+        }
+      },
+      EISA_PNP_ID(0x0A03),  // HID
+      1                     // UID
+    },
+    {
+      {
+        HARDWARE_DEVICE_PATH,
+        HW_PCI_DP,
+        {
+          sizeof(PCI_DEVICE_PATH),
+          0
+        }
+      },
+      0,
+      1
+    },
+    {
+      END_DEVICE_PATH_TYPE,
+      END_ENTIRE_DEVICE_PATH_SUBTYPE,
+      {
+        sizeof(EFI_DEVICE_PATH_PROTOCOL),
+        0
+      }
+    }
+  }
 };
 
 STATIC
@@ -400,12 +439,18 @@ EFI_PCI_IO_PROTOCOL PciIoTemplate =
 {
   PciIoPollMem,
   PciIoPollIo,
-  PciIoMemRead,
-  PciIoMemWrite,
-  PciIoIoRead,
-  PciIoIoWrite,
-  PciIoPciRead,
-  PciIoPciWrite,
+  {
+    PciIoMemRead,
+    PciIoMemWrite,
+  },
+  {
+    PciIoIoRead,
+    PciIoIoWrite,
+  },
+  {
+    PciIoPciRead,
+    PciIoPciWrite,
+  },
   PciIoCopyMem,
   PciIoMap,
   PciIoUnmap,
@@ -417,7 +462,7 @@ EFI_PCI_IO_PROTOCOL PciIoTemplate =
   PciIoGetBarAttributes,
   PciIoSetBarAttributes,
   0,
-  0
+  NULL
 };
 
 EFI_STATUS
