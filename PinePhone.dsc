@@ -153,7 +153,11 @@
 [LibraryClasses.common.SEC]
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
-  PlatformPeiLib|ArmPlatformPkg/PlatformPei/PlatformPeiLib.inf
+
+  # No chance of booting w/ sunxi Dxes with the stock one!
+  #PlatformPeiLib|ArmPlatformPkg/PlatformPei/PlatformPeiLib.inf
+  PlatformPeiLib|PinePhonePkg/PlatformPei/PlatformPeiLib.inf
+
   ExtractGuidedSectionLib|EmbeddedPkg/Library/PrePiExtractGuidedSectionLib/PrePiExtractGuidedSectionLib.inf
   LzmaDecompressLib|MdeModulePkg/Library/LzmaCustomDecompressLib/LzmaCustomDecompressLib.inf
   PrePiLib|EmbeddedPkg/Library/PrePiLib/PrePiLib.inf
@@ -231,7 +235,7 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
 
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x41000000
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x3df80000
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0xbdf80000 #0x3df80000
   # gPinePhonePkgTokenSpaceGuid.PcdMpParkSharedBase|0x7EF80000
   # gPinePhonePkgTokenSpaceGuid.PcdMpParkSharedSize|0x00080000
 

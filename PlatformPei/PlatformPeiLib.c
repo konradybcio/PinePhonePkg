@@ -40,7 +40,7 @@ SunxiScriptParsePeim (
   SUNXI_SCRIPT_PARSE_HOB  *Hob;
   EFI_STATUS Status = EFI_SUCCESS;
   
-  spare_head = get_spare_head(PcdGet32 (PcdFdBaseAddress));
+  spare_head = get_spare_head(PcdGet64(PcdFdBaseAddress));
   
   // ASSERT(!(spare_head->boot_head.length==spare_head->boot_head.uefi_length));
   if(spare_head->boot_head.length==spare_head->boot_head.uefi_length)
@@ -62,7 +62,7 @@ SunxiScriptParsePeim (
     return RETURN_OUT_OF_RESOURCES;
   }
   
-  CopyMem((VOID *)SunxiScriptBase,(VOID *)(PcdGet32 (PcdFdBaseAddress)+UefiLength),ScriptLength);
+  CopyMem((VOID *)SunxiScriptBase,(VOID *)(PcdGet64(PcdFdBaseAddress)+UefiLength),ScriptLength);
   Hob = CreateHob (EFI_HOB_TYPE_GUID_EXTENSION, sizeof (SUNXI_SCRIPT_PARSE_HOB));
   
   ASSERT(Hob != NULL);
@@ -132,7 +132,7 @@ SunxiBootInfoInit (VOID)
   struct spare_boot_head_t* spare_head;
   UINT64  DramSize = 0;
   
-  spare_head = get_spare_head(PcdGet32 (PcdFdBaseAddress));
+  spare_head = get_spare_head(PcdGet64(PcdFdBaseAddress));
   DramSize = ((spare_head->boot_data.dram_para[5]>>16)&0xffff)*1024*1024;
 
   DEBUG((EFI_D_INIT," DramSize is 0x%x\n", DramSize));
@@ -166,7 +166,7 @@ PlatformPeim (
 
   SunxiBootInfoInit();
 
-  BuildFvHob (PcdGet32(PcdFvBaseAddress), PcdGet32(PcdFvSize));
+  BuildFvHob (PcdGet64(PcdFvBaseAddress), PcdGet32(PcdFvSize));
   Status = BuildSunxiVariableHob();
   if(EFI_ERROR(Status))
   {
