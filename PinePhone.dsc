@@ -147,6 +147,8 @@
 
   # ..and some deps
   UncachedMemoryAllocationLib|PinePhonePkg/AncientArmPkg/Library/UncachedMemoryAllocationLib/UncachedMemoryAllocationLib.inf
+  UefiUsbLib|MdePkg/Library/UefiUsbLib/UefiUsbLib.inf
+  SunxiQueueLib|PinePhonePkg/Library/SunxiQueueLib/SunxiQueueLib.inf
 
 [LibraryClasses.common.SEC]
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
@@ -433,7 +435,15 @@
       gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|8000
   }
 
+  # USB
+  MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+  MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
+  MdeModulePkg/Bus/Usb/UsbMouseDxe/UsbMouseDxe.inf
+  MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
+
   # Sunxi thingies
   PinePhonePkg/Drivers/SunxiSdMmcDxe/SdMmcDxe.inf
   PinePhonePkg/Drivers/BootCommandDxe/BootCommandDxe.inf
   PinePhonePkg/Drivers/SmBusDxe/SmBusDxe.inf
+  PinePhonePkg/Drivers/PciEmulation/PciEmulation.inf
+  PinePhonePkg/Drivers/EfiUsbFnIo/EfiUsbFnIoDxe.inf
