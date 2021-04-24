@@ -33,11 +33,11 @@
 
 #include <Sunxi_type/Sunxi_type.h>
 #include <Sunxi_type/PrivateDef.h>
-#include <Sun50iW1P1/platform.h>
-#include <Sun50iW1P1/cpu.h>
-#include <Sun50iW1P1/ccmu.h>
-#include <Sun50iW1P1/clock.h>
-#include <Sun50iW1P1/usb.h>
+#include <platform.h>
+#include <cpu.h>
+#include <ccmu.h>
+#include <clock.h>
+#include <usb.h>
 
 #define  USBC_MAX_OPEN_NUM    8
 

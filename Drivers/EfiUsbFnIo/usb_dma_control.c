@@ -18,7 +18,7 @@
 
 #include <Sunxi_type/Sunxi_type.h>
 #include <Sunxi_type/PrivateDef.h>
-#include <Sun50iW1P1/usb.h>
+#include <usb.h>
 
 #define  SUNXI_USB_DMA_A50_MAX   (8)
 

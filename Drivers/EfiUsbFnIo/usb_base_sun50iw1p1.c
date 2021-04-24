@@ -35,9 +35,9 @@
 #include <Library/UsbBaseHead.h>
 #include <Sunxi_type/Sunxi_type.h>
 #include <Sunxi_type/PrivateDef.h>
-#include <Sun50iW1P1/platform.h>
-#include <Sun50iW1P1/usb.h>
-#include <Sun50iW1P1/intc.h>
+#include <platform.h>
+#include <usb.h>
+#include <intc.h>
 
 #include "usb_dma_control.h"
 #include "usb_defs.h"
@@ -1599,7 +1599,7 @@ __sunxi_usb_init_fail:
   return -1;
 }
 
-#include <Sun50iW1P1/gic.h>
+#include <gic.h>
 EFI_STATUS 
 SunxiConfigureEnableEndpoints(
   IN EFI_USBFN_IO_PROTOCOL *This,

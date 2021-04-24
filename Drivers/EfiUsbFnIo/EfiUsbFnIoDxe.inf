@@ -34,14 +34,15 @@
  usbc_dev.c
  usbc_resource.c
  usbc_dma.c
- 
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast 
  
 [Packages]
   MdePkg/MdePkg.dec
   ArmPkg/ArmPkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  SunxiPlatformPkg/SunxiPlatformPkg.dec
-  SunxiPlatformPkg/sun50iw1p1Pkg/sun50iw1p1Pkg.dec
+  PinePhonePkg/PinePhone.dec
 
 [LibraryClasses]
   PcdLib
