@@ -120,10 +120,6 @@ _GetStackBase:
   cmp   x0, #1
   bne   _PrepareArguments
 
-  /* Check if the fw is alive.. */
-  ldr     w3, =0xff18ed46 /* Lime = success! */
-  bl      debug_fb
-
 _ReserveGlobalVariable:
   LoadConstantToReg (FixedPcdGet32(PcdPeiGlobalVariableSize), x0)
   // InitializePrimaryStack($GlobalVariableSize, $Tmp1, $Tmp2)
@@ -148,16 +144,3 @@ _PrepareArguments:
 
 _NeverReturn:
   b _NeverReturn
-
-.globl debug_fb
-.type debug_fb @function
-debug_fb:
-#define PBOOT_FB_BASE 0x48000000
-  ldr    x20, =PBOOT_FB_BASE
-  mov    x21, #0x100000
-
-1:
-  str    w3, [x1], #4
-  subs   x2, x2, #4
-  bne    1b
-  ret
