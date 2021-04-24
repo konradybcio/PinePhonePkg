@@ -1,3 +1,9 @@
+# TODO:
+* Nuke dep on .fex
+* Figure out a good way to boot reliably?!
+* Minimize
+* Update ACPI tables
+
 DONT TRY HDMI IT WILL EXPLODE
 
 bash:
