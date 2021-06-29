@@ -22,7 +22,7 @@ setenv bootargs console=ttyS0,115200
 gpio set 116
  
 echo "Loading kernel..."
-fatload mmc ${mmc_bootdev}:1 ${kernel_addr_r} ${bootdir}/TEGRA210_EFI.fd
+fatload mmc ${mmc_bootdev}:1 ${kernel_addr_r} ${bootdir}/PINEPHONE_EFI.fd
  
 gpio set 115
  
