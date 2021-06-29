@@ -1,0 +1,37 @@
+gpio set 98 # Enable vibrator
+ 
+if test ${mmc_bootdev} -eq 0; then
+	echo "Booting from SD"
+	setenv linux_mmcdev 0
+else
+	echo "Booting from eMMC"
+	setenv linux_mmcdev 2
+fi
+ 
+# If we have at least 2 partitions, then the 1st one is /boot, and / is #2
+if part size mmc ${mmc_bootdev} 2 none; then
+	setenv rootpart 2
+else
+	setenv rootpart 1
+	setenv bootdir "/boot"
+fi
+ 
+# Linux cmdline, don't care
+setenv bootargs console=ttyS0,115200 
+ 
+gpio set 116
+ 
+echo "Loading kernel..."
+fatload mmc ${mmc_bootdev}:1 ${kernel_addr_r} ${bootdir}/TEGRA210_EFI.fd
+ 
+gpio set 115
+ 
+echo "Booting..."
+gpio clear 98 # Disable vibrator
+
+#bootm ${kernel_addr_r}
+
+# Clear caches and jump to EDK2
+icache off
+dcache off
+go ${kernel_addr_r}
