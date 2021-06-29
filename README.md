@@ -14,7 +14,8 @@ edk2-platforms@325097364dbdbc7b9311c723372e4e36a2f0012e.
 
 -----
 
-For simplefb you probably want to chainload this from p-boot,
+For simplefb you probably want to chainload this from p-boot, it didn't really work for me before
+but I can't debug it yet.
 
 </br>
 
@@ -23,6 +24,10 @@ For u-boot chainloading, you can find a sample configuration in theorycrafting/u
 </br>
 
 For not-chainloaded booting, eh I can't even tell if it boots, no serial cable :(
+
+</br>
+
+Ideally, we want to bring back sunxi_de and sunxi PlatformPei AND nuke the FEX deps (probably by hardcoding stuff?)
 
 </br>
 
