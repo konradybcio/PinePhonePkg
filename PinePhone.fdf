@@ -80,7 +80,7 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
   # Display
-  #INF PinePhonePkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
+  INF PinePhonePkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 
   # Serial
   INF MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
@@ -136,7 +136,7 @@ READ_LOCK_STATUS   = TRUE
   INF PinePhonePkg/Drivers/SunxiSdMmcDxe/SdMmcDxe.inf
   INF PinePhonePkg/Drivers/BootCommandDxe/BootCommandDxe.inf
   INF PinePhonePkg/Drivers/SmBusDxe/SmBusDxe.inf
-  INF PinePhonePkg/Drivers/SunxiDisplayDxe/DisplayV3Dxe.inf
+  #INF PinePhonePkg/Drivers/SunxiDisplayDxe/DisplayV3Dxe.inf
   INF PinePhonePkg/Drivers/PciEmulation/PciEmulation.inf
   INF PinePhonePkg/Drivers/EfiUsbFnIo/EfiUsbFnIoDxe.inf
 

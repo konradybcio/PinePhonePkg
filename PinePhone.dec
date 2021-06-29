@@ -49,6 +49,15 @@
   gEfiCheckSigProtocolGuid = { 0xe52500c3, 0x4bf4, 0x41a5, { 0x96, 0x92, 0x6d, 0xf7, 0x3d, 0xbf, 0xb9, 0xfe } }
 
 [PcdsFixedAtBuild.common]
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x48000000|UINT32|0x0000a400
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|720|UINT32|0x0000a401
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1440|UINT32|0x0000a402
+
+  # Boo.. UEFI definitely wants 32!
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|24|UINT32|0x0000a403
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth|720|UINT32|0x0000a405
+  gPinePhonePkgTokenSpaceGuid.PcdMipiFrameBufferVisibleHeight|1440|UINT32|0x0000a406
+
   # SMBIOS
   gPinePhonePkgTokenSpaceGuid.PcdSmbiosSystemModel|"Pine64 PinePhone"|VOID*|0x0000a301
   gPinePhonePkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Allwinner A64"|VOID*|0x0000a302

@@ -362,8 +362,8 @@
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
   # DisplAYY
-  PinePhonePkg/Drivers/SunxiDisplayDxe/DisplayV3Dxe.inf
-  # PinePhonePkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
+  #PinePhonePkg/Drivers/SunxiDisplayDxe/DisplayV3Dxe.inf
+  PinePhonePkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 
   # SMBIOS
   PinePhonePkg/Drivers/SmBiosTableDxe/SunxiSmbiosDxe.inf
