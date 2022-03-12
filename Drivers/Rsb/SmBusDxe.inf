@@ -19,36 +19,36 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = Sun9iW1SmBusLib
-  FILE_GUID                      = 39CEB989-48D2-4932-A6D3-B7833B06BFA2
-  MODULE_TYPE                    = BASE
+  BASE_NAME                      = SmbusDxe
+  FILE_GUID                      = d5125e0f-1226-444f-a218-0085996ed5da
+  MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
-  LIBRARY_CLASS                  = SmBusLib
+
+  ENTRY_POINT                    = InitializeSmbus
 
 [Sources.common]
   Rsb.c
-  SmBusLib.c
+  SmBusDxe.c
 
 [Packages]
- # MdePkg/MdePkg.dec
- # MdeModulePkg/MdeModulePkg.dec
-  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
-  EmbeddedPkg/EmbeddedPkg.dec
   PinePhonePkg/PinePhone.dec
-  
+
 [LibraryClasses]
- # UefiDriverEntryPoint
-  DebugLib
+  PcdLib
+  UefiLib
+  UefiDriverEntryPoint
+  MemoryAllocationLib
   IoLib
-  BaseLib
-  BaseMemoryLib
+  SysConfigLib
   SunxiSmcLib
   
 [Guids]
-
-
+  
 [Protocols]
- 
-[FixedPcd]
+  gEfiSmbusHcProtocolGuid
 
+[Pcd]
+
+[depex]
+  TRUE

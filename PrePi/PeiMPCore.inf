@@ -70,7 +70,7 @@
   gArmMpCoreInfoGuid
 
 [FeaturePcd]  
-  #gEmbeddedTokenSpaceGuid.PcdCacheEnable # it's unused and the build system is drunk
+  # gEmbeddedTokenSpaceGuid.PcdCacheEnable # it's unused and the build system is drunk
   gEmbeddedTokenSpaceGuid.PcdPrePiProduceMemoryTypeInformationHob
   gArmPlatformTokenSpaceGuid.PcdSendSgiToBringUpSecondaryCores
 

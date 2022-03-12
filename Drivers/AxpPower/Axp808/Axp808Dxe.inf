@@ -16,39 +16,41 @@
 #**/
 
 
-
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = Sun9iW1SmBusLib
-  FILE_GUID                      = 39CEB989-48D2-4932-A6D3-B7833B06BFA2
-  MODULE_TYPE                    = BASE
+  BASE_NAME                      = Axp808Dxe
+  FILE_GUID                      = 92780AF1-9EB7-4967-B512-7F6573752E59
+  MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
-  LIBRARY_CLASS                  = SmBusLib
+
+  ENTRY_POINT                    = Axp808Initialize
+
 
 [Sources.common]
-  Rsb.c
-  SmBusLib.c
+  Axp808.c
+  Axp808Supply.c
+  Axp808Dxe.c
 
 [Packages]
- # MdePkg/MdePkg.dec
- # MdeModulePkg/MdeModulePkg.dec
-  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
-  EmbeddedPkg/EmbeddedPkg.dec
   PinePhonePkg/PinePhone.dec
-  
+
 [LibraryClasses]
- # UefiDriverEntryPoint
-  DebugLib
-  IoLib
-  BaseLib
   BaseMemoryLib
-  SunxiSmcLib
+  PcdLib
+  UefiLib
+  UefiDriverEntryPoint
+  BaseLib
+  SysConfigLib
   
 [Guids]
-
-
+  
 [Protocols]
- 
-[FixedPcd]
+  gEfiSmbusHcProtocolGuid
+  gAxpPowerProtocolGuid
+	
+[Pcd]
+
+[depex]
+  gEfiSmbusHcProtocolGuid
 

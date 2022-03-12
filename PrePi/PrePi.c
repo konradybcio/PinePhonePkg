@@ -123,7 +123,7 @@ PrePiMain (
   // Initialize the Debug Agent for Source Level Debugging
   InitializeDebugAgent (DEBUG_AGENT_INIT_POSTMEM_SEC, NULL, NULL);
   SaveAndSetDebugTimerInterrupt (TRUE);
-  
+
   // Declare the PI/UEFI memory region
   HobList = HobConstructor (
     (VOID*)UefiMemoryBase,
@@ -133,9 +133,15 @@ PrePiMain (
     );
   PrePeiSetHobList (HobList);
 
+  CharCount = AsciiSPrint (Buffer, sizeof(Buffer), "got here B");
+  SerialPortWrite ((UINT8 *) Buffer, CharCount);
+
   // Initialize MMU and Memory HOBs (Resource Descriptor HOBs)
   Status = MemoryPeim (UefiMemoryBase, FixedPcdGet32 (PcdSystemMemoryUefiRegionSize));
   ASSERT_EFI_ERROR (Status);
+
+  CharCount = AsciiSPrint (Buffer, sizeof(Buffer), "got here BAAAA");
+  SerialPortWrite ((UINT8 *) Buffer, CharCount);
 
   // Create the Stacks HOB (reserve the memory for all stacks)
   if (ArmIsMpCore ()) {
@@ -144,13 +150,26 @@ PrePiMain (
   } else {
     StacksSize = PcdGet32 (PcdCPUCorePrimaryStackSize);
   }
+
+  CharCount = AsciiSPrint (Buffer, sizeof(Buffer), "got here BFFFF");
+  SerialPortWrite ((UINT8 *) Buffer, CharCount);
+
   BuildStackHob (StacksBase, StacksSize);
+
+  CharCount = AsciiSPrint (Buffer, sizeof(Buffer), "got here C");
+  SerialPortWrite ((UINT8 *) Buffer, CharCount);
 
   // Declare the Global Variable HOB
   BuildGlobalVariableHob (GlobalVariableBase, FixedPcdGet32 (PcdPeiGlobalVariableSize));
 
+  CharCount = AsciiSPrint (Buffer, sizeof(Buffer), "got here D");
+  SerialPortWrite ((UINT8 *) Buffer, CharCount);
+
   //TODO: Call CpuPei as a library
   BuildCpuHob (PcdGet8 (PcdPrePiCpuMemorySize), PcdGet8 (PcdPrePiCpuIoSize));
+
+  CharCount = AsciiSPrint (Buffer, sizeof(Buffer), "got here E");
+  SerialPortWrite ((UINT8 *) Buffer, CharCount);
 
   if (ArmIsMpCore ()) {
     // Only MP Core platform need to produce gArmMpCoreInfoPpiGuid
@@ -171,9 +190,15 @@ PrePiMain (
   // Initialize Platform HOBs (CpuHob and FvHob)
   Status = PlatformPeim ();
   ASSERT_EFI_ERROR (Status);
-  
+
+  CharCount = AsciiSPrint (Buffer, sizeof(Buffer), "got here F");
+  SerialPortWrite ((UINT8 *) Buffer, CharCount);
+
   // Set the Boot Mode
   SetBootMode (ArmPlatformGetBootMode ());
+
+  CharCount = AsciiSPrint (Buffer, sizeof(Buffer), "got here G");
+  SerialPortWrite ((UINT8 *) Buffer, CharCount);
 
   // Now, the HOB List has been initialized, we can register performance information
   PERF_START (NULL, "PEI", NULL, StartTimeStamp);
@@ -208,7 +233,7 @@ CEntryPoint (
   )
 {
   UINT64   StartTimeStamp;
-  
+
   ASSERT(!ArmIsMpCore() || (PcdGet32 (PcdCoreCount) > 1));
 
   // Initialize the platform specific controllers
@@ -222,13 +247,10 @@ CEntryPoint (
   } else {
     StartTimeStamp = 0;
   }
-  
+
   // Data Cache enabled on Primary core when MMU is enabled.
   ArmDisableDataCache ();
- if(ArmPlatformIsPrimaryCore (MpId)) {
-      //Invalidate Data cache
-    ArmInvalidateDataCache ();
-  }
+
   // Invalidate instruction cache
   ArmInvalidateInstructionCache ();
 
@@ -244,11 +266,11 @@ CEntryPoint (
         ArmCallSEV ();
       }
     } else {
-      // Wait the Primay core has defined the address of the Global Variable region (event: ARM_CPU_EVENT_DEFAULT)
-    //  ArmCallWFE ();
+      // Wait the Primary core has defined the address of the Global Variable region (event: ARM_CPU_EVENT_DEFAULT)
+      //ArmCallWFE ();
     }
   }
-  
+
   // If not primary Jump to Secondary Main
   if (ArmPlatformIsPrimaryCore (MpId)) {
     // Goto primary Main.

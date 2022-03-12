@@ -16,37 +16,33 @@
 #**/
 
 
-
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = Sun9iW1SmBusLib
+  BASE_NAME                      = Axp81xLib
   FILE_GUID                      = 39CEB989-48D2-4932-A6D3-B7833B06BFA2
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
-  LIBRARY_CLASS                  = SmBusLib
+  LIBRARY_CLASS                  = AxpPowerLib
 
 [Sources.common]
-  Rsb.c
-  SmBusLib.c
-
+  Axp81X.c
+  Axp81XSupply.c
+  Axp81XLib.c
+  
 [Packages]
- # MdePkg/MdePkg.dec
- # MdeModulePkg/MdeModulePkg.dec
-  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
-  EmbeddedPkg/EmbeddedPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
   PinePhonePkg/PinePhone.dec
   
 [LibraryClasses]
- # UefiDriverEntryPoint
   DebugLib
   IoLib
+  HobLib
   BaseLib
   BaseMemoryLib
-  SunxiSmcLib
-  
-[Guids]
+  SmBusLib
 
+[Guids]
 
 [Protocols]
  

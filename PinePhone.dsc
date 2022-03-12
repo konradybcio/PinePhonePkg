@@ -78,7 +78,8 @@
   CapsuleLib|MdeModulePkg/Library/DxeCapsuleLibNull/DxeCapsuleLibNull.inf
   CpuLib|MdePkg/Library/BaseCpuLib/BaseCpuLib.inf
   CustomizedDisplayLib|MdeModulePkg/Library/CustomizedDisplayLib/CustomizedDisplayLib.inf
-  DebugLib|PinePhonePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+  # DebugLib|PinePhonePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+  DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
   DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
   DebugAgentLib|MdeModulePkg/Library/DebugAgentLibNull/DebugAgentLibNull.inf
   DebugAgentTimerLib|EmbeddedPkg/Library/DebugAgentTimerLibNull/DebugAgentTimerLibNull.inf
@@ -122,11 +123,13 @@
   VariablePolicyHelperLib|MdeModulePkg/Library/VariablePolicyHelperLib/VariablePolicyHelperLib.inf
 
   # Board / Platform Libraries
-  ArmPlatformLib|PinePhonePkg/Library/PinePhonePlatformLib/PinePhonePlatformLib.inf
+  ArmPlatformLib|PinePhonePkg/Library/Sun50iW1P1Lib/Sun50iW1P1.inf
   PlatformBootManagerLib|PinePhonePkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
 
   # System Libraries
   EfiResetSystemLib|ArmPkg/Library/ArmPsciResetSystemLib/ArmPsciResetSystemLib.inf
+  SmBusLib|PinePhonePkg/Drivers/Rsb/SmBusLib.inf
+  AxpPowerLib|PinePhonePkg/Drivers/AxpPower/Axp81X/Axp81XLib.inf
 
   # Support Libraries
   DmaBounceBufferLib|PinePhonePkg/Library/DmaBounceBufferLib/DmaBounceBufferLib.inf
@@ -160,7 +163,7 @@
   HobLib|EmbeddedPkg/Library/PrePiHobLib/PrePiHobLib.inf
   PrePiHobListPointerLib|ArmPlatformPkg/Library/PrePiHobListPointerLib/PrePiHobListPointerLib.inf
   MemoryAllocationLib|EmbeddedPkg/Library/PrePiMemoryAllocationLib/PrePiMemoryAllocationLib.inf
-  MemoryInitPeiLib|PinePhonePkg/Library/MemoryInitPeiLib/MemoryInitPeiLib.inf
+  MemoryInitPeiLib|PinePhonePkg/MemoryInitPei/MemoryInitPeiLib.inf
 
 [LibraryClasses.common.DXE_CORE]
   DxeCoreEntryPoint|MdePkg/Library/DxeCoreEntryPoint/DxeCoreEntryPoint.inf
@@ -221,7 +224,7 @@
   gArmTokenSpaceGuid.PcdRelocateVectorTable|FALSE
 
 [PcdsFixedAtBuild.common]
-  gArmPlatformTokenSpaceGuid.PcdCoreCount|1 # 4..
+  gArmPlatformTokenSpaceGuid.PcdCoreCount|4 # 4..
   gArmPlatformTokenSpaceGuid.PcdClusterCount|1
 
   gArmTokenSpaceGuid.PcdVFPEnabled|1
@@ -230,17 +233,17 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
 
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x41000000
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x41000000 # 0x41110000?
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x3df80000
-  # gPinePhonePkgTokenSpaceGuid.PcdMpParkSharedBase|0x7EF80000
-  # gPinePhonePkgTokenSpaceGuid.PcdMpParkSharedSize|0x00080000
+  gSunxiTokenSpaceGuid.PcdMpParkSharedBase|0x7EF80000
+  gSunxiTokenSpaceGuid.PcdMpParkSharedSize|0x00080000
 
   # Manually set the stack
   # Size of the region used by UEFI in permanent memory (Reserved 128MB)
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|0x00040000      # 64K stack
   gArmPlatformTokenSpaceGuid.PcdCPUCorePrimaryStackSize|0x20000
   gArmPlatformTokenSpaceGuid.PcdCPUCoreSecondaryStackSize|0x20000
-  gArmPlatformTokenSpaceGuid.PcdSystemMemoryUefiRegionSize|0x10000000
+  gArmPlatformTokenSpaceGuid.PcdSystemMemoryUefiRegionSize|0x04000000 # 0x10000000
 
   ## Default Terminal Type
   ## 0-PCANSI, 1-VT100, 2-VT00+, 3-UTF8, 4-TTYTERM

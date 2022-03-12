@@ -14,16 +14,7 @@ edk2-platforms@325097364dbdbc7b9311c723372e4e36a2f0012e.
 
 -----
 
-For simplefb you probably want to chainload this from p-boot, it didn't really work for me before
-but I can't debug it yet.
-
-</br>
-
-For u-boot chainloading, you can find a sample configuration in theorycrafting/u-boot-config
-
-</br>
-
-For not-chainloaded booting, eh I can't even tell if it boots, no serial cable :(
+For now it prints some of my stupid debug prints on serial and hangs on MMU enablement.
 
 </br>
 
@@ -45,3 +36,8 @@ rm -rf Conf/ && mkdir Conf && rm -rf Build/ && source edksetup.sh && build -a AA
 cd Build/PinePhone-AARCH64/DEBUG_GCC5/FV
 
 aarch64-linux-gnu-objcopy -I binary -O elf64-littleaarch64 --binary-architecture aarch64 PINEPHONE_EFI.fd Pine.elfobj && aarch64-linux-gnu-ld -m aarch64elf Pine.elfobj -T ../../../../PinePhonePkg/FvWrapper.ld -o Pine.elf
+
+-----
+You can then load it from u-boot shell (mmc1 is eMMC and part1 is /boot)
+
+mmc dev 1;load mmc 1:1 ${kernel_addr_r} Pine.elf;bootelf 0x40080000
