@@ -58,7 +58,7 @@ SerialPortInitialize (
   normal_gpio_cfg* uart_gpio_cfg;
   UINT32 uart_port;
   
-  struct spare_boot_head_t* spare_head =get_spare_head(PcdGet64(PcdFdBaseAddress));
+  struct spare_boot_head_t* spare_head =get_spare_head(FixedPcdGet32(PcdFdBaseAddress));
 
   uart_gpio_cfg = (normal_gpio_cfg *)spare_head->boot_data.uart_gpio;
   uart_port = spare_head->boot_data.uart_port;

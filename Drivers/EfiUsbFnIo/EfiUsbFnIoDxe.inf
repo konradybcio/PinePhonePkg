@@ -50,7 +50,6 @@
   BaseLib
   UefiDriverEntryPoint
   MemoryAllocationLib
-  UncachedMemoryAllocationLib
   CacheMaintenanceLib
   IoLib
   TimerLib

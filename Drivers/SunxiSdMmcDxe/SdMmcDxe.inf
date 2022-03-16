@@ -56,7 +56,6 @@
   ArmLib
   IoLib
   TimerLib
-  DmaLib
   DebugLib
   PrintLib
   ArmPlatformLib

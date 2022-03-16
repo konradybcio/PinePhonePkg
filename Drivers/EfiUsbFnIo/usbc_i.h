@@ -26,7 +26,6 @@
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/PrintLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/UncachedMemoryAllocationLib.h>
 #include <Library/DxeServicesTableLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/TimerLib.h>

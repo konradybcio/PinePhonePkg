@@ -19,7 +19,6 @@
 #include <Library/ArmPlatformLib.h>
 #include <Library/DebugLib.h>
 #include <Library/PcdLib.h>
-#include "../AncientArmPkg/Include/Library/ArmArchTimerLib.h"
 #include <Library/DebugLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/TimerLib.h>
@@ -72,7 +71,7 @@ ARM_CORE_INFO mSun50iW1P1MpCoreInfo[] = {
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
-    (UINT64)0xFFFFFFFF
+    // (UINT64)0xFFFFFFFF
   },
   {
     // Cluster 0, Core 1
@@ -82,7 +81,7 @@ ARM_CORE_INFO mSun50iW1P1MpCoreInfo[] = {
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
-    (UINT64)0xFFFFFFFF
+    // (UINT64)0xFFFFFFFF
   },
   {
     // Cluster 0, Core 2
@@ -92,7 +91,7 @@ ARM_CORE_INFO mSun50iW1P1MpCoreInfo[] = {
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
-    (UINT64)0xFFFFFFFF
+    // (UINT64)0xFFFFFFFF
   },
   {
     // Cluster 0, Core 3
@@ -102,7 +101,7 @@ ARM_CORE_INFO mSun50iW1P1MpCoreInfo[] = {
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
     (EFI_PHYSICAL_ADDRESS)AW_CPU_JUMP_MAIL_ADDRESS,
-    (UINT64)0xFFFFFFFF
+    // (UINT64)0xFFFFFFFF
   }
 
 };

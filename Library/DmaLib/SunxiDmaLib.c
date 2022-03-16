@@ -22,7 +22,6 @@
 #include <Library/IoLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/UncachedMemoryAllocationLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Sun8iW1/cpu.h>
 #include <Sun8iW1/intc.h>

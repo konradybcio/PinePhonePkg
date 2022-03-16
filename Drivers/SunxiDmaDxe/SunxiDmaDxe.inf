@@ -41,10 +41,8 @@
   DxeServicesTableLib
   BaseMemoryLib
   MemoryAllocationLib
-  UncachedMemoryAllocationLib
   ArmLib
   IoLib
-  DmaLib
   DebugLib
   PrintLib
   ArmPlatformLib

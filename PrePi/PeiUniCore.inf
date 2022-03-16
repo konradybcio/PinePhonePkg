@@ -36,8 +36,8 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  PinePhonePkg/AncientArmPkg/ArmPkg.dec
-  PinePhonePkg/AncientArmPlatformPkg/ArmPlatformPkg.dec
+  ArmPkg/ArmPkg.dec
+  ArmPlatformPkg/ArmPlatformPkg.dec
   PinePhonePkg/PinePhone.dec
     
 [LibraryClasses]
@@ -65,7 +65,6 @@
   gArmMpCoreInfoPpiGuid
 
 [Guids]
-  gArmGlobalVariableGuid
   gArmMpCoreInfoGuid
 
 [FeaturePcd]  
@@ -81,13 +80,10 @@
   gArmTokenSpaceGuid.PcdFdBaseAddress
   gArmTokenSpaceGuid.PcdFdSize
 
-  gArmTokenSpaceGuid.PcdFvBaseAddress
   gArmTokenSpaceGuid.PcdFvSize
 
   gArmPlatformTokenSpaceGuid.PcdCPUCorePrimaryStackSize
   gArmPlatformTokenSpaceGuid.PcdCPUCoreSecondaryStackSize
-
-  gArmPlatformTokenSpaceGuid.PcdPeiGlobalVariableSize
 
   gArmTokenSpaceGuid.PcdSystemMemoryBase
   gArmTokenSpaceGuid.PcdSystemMemorySize
@@ -108,3 +104,6 @@
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesData
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderCode
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderData
+
+[Pcd]
+  gArmTokenSpaceGuid.PcdFvBaseAddress

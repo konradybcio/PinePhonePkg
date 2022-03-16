@@ -27,7 +27,6 @@
 #include <Library/PcdLib.h>
 #include <Library/IoLib.h>
 #include <Library/TimerLib.h>
-#include <Library/UncachedMemoryAllocationLib.h>
 #include <Protocol/GraphicsOutput.h>
 #include <Protocol/DevicePath.h>
 #include <Protocol/HardwareInterrupt.h>
@@ -40,7 +39,6 @@
 
 
 #include <Library/MemoryAllocationLib.h>
-#include <Library/UncachedMemoryAllocationLib.h>
 #include <Library/SunxiBootInfoLib.h>
 #include <Interinc/sunxi_uefi.h>
 

@@ -45,6 +45,8 @@
   gEmbeddedTokenSpaceGuid.PcdPrePiProduceMemoryTypeInformationHob|TRUE
   gEfiMdeModulePkgTokenSpaceGuid.PcdTurnOffUsbLegacySupport|TRUE
 
+!include MdePkg/MdeLibs.dsc.inc
+
 [LibraryClasses.common]
   # ARM Architectural Libraries
   ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
@@ -62,7 +64,7 @@
   ArmHvcLib|ArmPkg/Library/ArmHvcLib/ArmHvcLib.inf
   ArmGicLib|ArmPkg/Drivers/ArmGic/ArmGicLib.inf
   ArmGicArchLib|ArmPkg/Library/ArmGicArchLib/ArmGicArchLib.inf
-  DmaLib|PinePhonePkg/AncientArmPkg/Library/ArmDmaLib/ArmDmaLib.inf
+  DmaLib|EmbeddedPkg/Library/NonCoherentDmaLib/NonCoherentDmaLib.inf
   
   # Compiler Services
   NULL|ArmPkg/Library/CompilerIntrinsicsLib/CompilerIntrinsicsLib.inf
@@ -149,14 +151,13 @@
   HdmiLib|PinePhonePkg/Library/HdmiLib/HdmiLib_GCC.inf
 
   # ..and some deps
-  UncachedMemoryAllocationLib|PinePhonePkg/AncientArmPkg/Library/UncachedMemoryAllocationLib/UncachedMemoryAllocationLib.inf
   UefiUsbLib|MdePkg/Library/UefiUsbLib/UefiUsbLib.inf
   SunxiQueueLib|PinePhonePkg/Library/SunxiQueueLib/SunxiQueueLib.inf
 
 [LibraryClasses.common.SEC]
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
-  PlatformPeiLib|ArmPlatformPkg/PlatformPei/PlatformPeiLib.inf
+  PlatformPeiLib|PinePhonePkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   ExtractGuidedSectionLib|EmbeddedPkg/Library/PrePiExtractGuidedSectionLib/PrePiExtractGuidedSectionLib.inf
   LzmaDecompressLib|MdeModulePkg/Library/LzmaCustomDecompressLib/LzmaCustomDecompressLib.inf
   PrePiLib|EmbeddedPkg/Library/PrePiLib/PrePiLib.inf
@@ -228,7 +229,6 @@
   gArmPlatformTokenSpaceGuid.PcdClusterCount|1
 
   gArmTokenSpaceGuid.PcdVFPEnabled|1
-  gArmTokenSpaceGuid.PcdArmMachineType|4137
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
@@ -449,4 +449,4 @@
   PinePhonePkg/Drivers/BootCommandDxe/BootCommandDxe.inf
   PinePhonePkg/Drivers/SmBusDxe/SmBusDxe.inf
   PinePhonePkg/Drivers/PciEmulation/PciEmulation.inf
-  PinePhonePkg/Drivers/EfiUsbFnIo/EfiUsbFnIoDxe.inf
+  #PinePhonePkg/Drivers/EfiUsbFnIo/EfiUsbFnIoDxe.inf

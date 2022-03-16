@@ -18,7 +18,6 @@
 #include <Library/DebugLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/UefiBootServicesTableLib.h>
-#include <Library/DmaLib.h>
 #include <Library/ArmLib.h>
 
 #include <Protocol/SunxiDma.h>

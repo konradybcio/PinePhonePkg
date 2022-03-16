@@ -14,9 +14,9 @@
 
 #include <PiPei.h>
 
-#include "../AncientArmPkg/Include/Library/ArmLib.h"
-#include <Library/ArmPlatformLib.h>
 #include <Library/ArmLib.h>
+#include <Library/ArmMmuLib.h>
+#include <Library/ArmPlatformLib.h>
 #include <Library/DebugLib.h>
 #include <Library/HobLib.h>
 #include <Library/MemoryAllocationLib.h>

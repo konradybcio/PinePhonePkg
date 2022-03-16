@@ -25,16 +25,12 @@
 #include <Ppi/GuidedSectionExtraction.h>
 #include <Ppi/ArmMpCoreInfo.h>
 #include <Guid/LzmaDecompress.h>
-#include <Guid/ArmGlobalVariableHob.h>
 
 #include "PrePi.h"
 #include "LzmaDecompress.h"
 
 #define IS_XIP() (((UINT32)FixedPcdGet32 (PcdFdBaseAddress) > (UINT32)(FixedPcdGet64 (PcdSystemMemoryBase) + FixedPcdGet32 (PcdSystemMemorySize))) || \
                   ((FixedPcdGet32 (PcdFdBaseAddress) + FixedPcdGet32 (PcdFdSize)) < FixedPcdGet64 (PcdSystemMemoryBase)))
-
-// Not used when PrePi in run in XIP mode
-UINTN mGlobalVariableBase = 0;
 
 EFI_STATUS
 EFIAPI
@@ -47,23 +43,6 @@ EFIAPI
 LzmaDecompressLibConstructor (
   VOID
   );
-
-VOID
-EFIAPI
-BuildGlobalVariableHob (
-  IN EFI_PHYSICAL_ADDRESS         GlobalVariableBase,
-  IN UINT32                       GlobalVariableSize
-  )
-{
-  ARM_HOB_GLOBAL_VARIABLE  *Hob;
-
-  Hob = CreateHob (EFI_HOB_TYPE_GUID_EXTENSION, sizeof (ARM_HOB_GLOBAL_VARIABLE));
-  ASSERT(Hob != NULL);
-
-  CopyGuid (&(Hob->Header.Name), &gArmGlobalVariableGuid);
-  Hob->GlobalVariableBase = GlobalVariableBase;
-  Hob->GlobalVariableSize = GlobalVariableSize;
-}
 
 EFI_STATUS
 GetPlatformPpi (
@@ -93,7 +72,6 @@ VOID
 PrePiMain (
   IN  UINTN                     UefiMemoryBase,
   IN  UINTN                     StacksBase,
-  IN  UINTN                     GlobalVariableBase,
   IN  UINT64                    StartTimeStamp
   )
 {
@@ -158,9 +136,6 @@ PrePiMain (
 
   CharCount = AsciiSPrint (Buffer, sizeof(Buffer), "got here C");
   SerialPortWrite ((UINT8 *) Buffer, CharCount);
-
-  // Declare the Global Variable HOB
-  BuildGlobalVariableHob (GlobalVariableBase, FixedPcdGet32 (PcdPeiGlobalVariableSize));
 
   CharCount = AsciiSPrint (Buffer, sizeof(Buffer), "got here D");
   SerialPortWrite ((UINT8 *) Buffer, CharCount);
@@ -228,8 +203,7 @@ VOID
 CEntryPoint (
   IN  UINTN                     MpId,
   IN  UINTN                     UefiMemoryBase,
-  IN  UINTN                     StacksBase,
-  IN  UINTN                     GlobalVariableBase
+  IN  UINTN                     StacksBase
   )
 {
   UINT64   StartTimeStamp;
@@ -260,7 +234,6 @@ CEntryPoint (
   // Define the Global Variable region when we are not running in XIP
   if (!IS_XIP()) {
     if (ArmPlatformIsPrimaryCore (MpId)) {
-      mGlobalVariableBase = GlobalVariableBase;
       if (ArmIsMpCore()) {
         // Signal the Global Variable Region is defined (event: ARM_CPU_EVENT_DEFAULT)
         ArmCallSEV ();
@@ -274,7 +247,7 @@ CEntryPoint (
   // If not primary Jump to Secondary Main
   if (ArmPlatformIsPrimaryCore (MpId)) {
     // Goto primary Main.
-    PrimaryMain (UefiMemoryBase, StacksBase, GlobalVariableBase, StartTimeStamp);
+    PrimaryMain (UefiMemoryBase, StacksBase, StartTimeStamp);
   } else {
     SecondaryMain (MpId);
   }

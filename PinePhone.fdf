@@ -137,7 +137,7 @@ READ_LOCK_STATUS   = TRUE
   INF PinePhonePkg/Drivers/SmBusDxe/SmBusDxe.inf
   #INF PinePhonePkg/Drivers/SunxiDisplayDxe/DisplayV3Dxe.inf
   INF PinePhonePkg/Drivers/PciEmulation/PciEmulation.inf
-  INF PinePhonePkg/Drivers/EfiUsbFnIo/EfiUsbFnIoDxe.inf
+  #INF PinePhonePkg/Drivers/EfiUsbFnIo/EfiUsbFnIoDxe.inf
 
   # Linux (pretends to be UEFI shell)
   # FILE APPLICATION = 7C04A583-9E3E-4f1c-AD65-E05268D0B4D1 {

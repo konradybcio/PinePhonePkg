@@ -22,7 +22,6 @@ VOID
 PrimaryMain (
   IN  UINTN                     UefiMemoryBase,
   IN  UINTN                     StacksBase,
-  IN  UINTN                     GlobalVariableBase,
   IN  UINT64                    StartTimeStamp
   )
 {
@@ -35,7 +34,7 @@ PrimaryMain (
     ArmGicSendSgiTo (PcdGet64(PcdGicDistributorBase), ARM_GIC_ICDSGIR_FILTER_EVERYONEELSE, 0x0E, PcdGet32 (PcdGicSgiIntId));
   }
 
-  PrePiMain (UefiMemoryBase, StacksBase, GlobalVariableBase, StartTimeStamp);
+  PrePiMain (UefiMemoryBase, StacksBase, StartTimeStamp);
 
   // We must never return
   ASSERT(FALSE);
@@ -93,7 +92,7 @@ SecondaryMain (
 
   // Find the core in the ArmCoreTable
   for (Index = 0; Index < ArmCoreCount; Index++) {
-    if ((ArmCoreInfoTable[Index].ClusterId == ClusterId) && (ArmCoreInfoTable[Index].CoreId == CoreId)) {
+    if ((GET_MPIDR_AFF1 (ArmCoreInfoTable[Index].Mpidr) == ClusterId) && (GET_MPIDR_AFF0 (ArmCoreInfoTable[Index].Mpidr) == CoreId)) {
       break;
     }
   }
@@ -120,13 +119,13 @@ SecondaryMain (
       if(SecondaryEntryAddr)
       {
         PMailBox->JumpAddress =0x00000000;//write zero to acknowledge
-        ArmGicAcknowledgeInterrupt (PcdGet64(PcdGicDistributorBase), PcdGet64(PcdGicInterruptInterfaceBase), NULL, NULL);
+        ArmGicAcknowledgeInterrupt (PcdGet64(PcdGicInterruptInterfaceBase), (UINTN *)NULL);
         break;  //let's break and prepare to jump to secondery core entry point.
       }
     }
 
     // Acknowledge the interrupt and send End of Interrupt signal.
-    ArmGicAcknowledgeInterrupt (PcdGet64(PcdGicDistributorBase), PcdGet64(PcdGicInterruptInterfaceBase), NULL, NULL);
+    ArmGicAcknowledgeInterrupt (PcdGet64(PcdGicInterruptInterfaceBase), (UINTN *)NULL);
   } while (1);
     // Disable Instruction Caches on all cores.
   ArmDisableInstructionCache ();

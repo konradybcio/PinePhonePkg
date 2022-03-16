@@ -114,7 +114,6 @@
   IoLib
   TimerLib
   SysConfigLib
-  DmaLib
   PrintLib
   ArmLib
   SunxiBootInfoLib

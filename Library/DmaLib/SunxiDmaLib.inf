@@ -37,7 +37,6 @@
   DebugLib
   UefiBootServicesTableLib
   MemoryAllocationLib
-  UncachedMemoryAllocationLib
   IoLib
   BaseMemoryLib
   ArmLib
