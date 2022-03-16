@@ -42,6 +42,7 @@ cd edk2
 bash # zsh and friends won't work :(
 
 # Builds the image and packs it into an ELF
+# Note that you can't dirtybuild EDK2, or your changes won't be picked up
 rm -rf Conf/ && \
 mkdir Conf && \
 make -C BaseTools && \
