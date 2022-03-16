@@ -39,6 +39,9 @@ Maybe even W11 22000 builds, as armv8.1 is not yet an enforced requirement.
 git clone --recursive https://github.com/tianocore/edk2 # Cloning master may make it not compile some day, but fixes are welcome!
 cd edk2
 
+git clone https://github.com/konradybcio/PinePhonePkg # You need to keep the directory name case-sensitive or the build system will scream at you
+git am PinePhonePkg/EDK2-patches/0001-BaseTools-tools_def-support-ASLC-files-on-AArch64.patch
+
 bash # zsh and friends won't work :(
 
 # Builds the image and packs it into an ELF
